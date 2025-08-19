@@ -1,78 +1,110 @@
 ---
-import GitHub from "./icons/GitHub.astro"
-import NextJS from "./icons/NextJS.astro"
-import Tailwind from "./icons/Tailwind.astro"
-import Link from "./icons/Link.astro"
-import LinkButton from "./LinkButton.astro"
+import GitHub from "./icons/GitHub.astro";
+import Link from "./icons/Link.astro";
+import LinkButton from "./LinkButton.astro";
 
-const TAGS = {
-  NEXT: {
-    name: "Next.js",
-    class: "bg-black text-white",
-    icon: NextJS,
-  },
-  TAILWIND: {
-    name: "Tailwind CSS",
-    class: "bg-[#003159] text-white",
-    icon: Tailwind,
-  },
-}
 const PROJECTS = [
   {
-    title: "SVGL - A beautiful library with SVG logos",
-    description:
-      "Biblioteca de logos SVG de las marcas más populares. +10k visitas al mes. +2K svgs descargados. Creado desde cero con Next.js, React y Tailwind CSS.",
-    link: "https://svgl.vercel.app/",
-    github: "https://github.com/pheralb/svgl",
-    image: "/projects/svgl.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+    title: "ONE-Alura",
+    description: "Proyecto Final de Alura Latam",
+    github: "https://github.com/bash20cu/ONE-Alura",
+    link: null,
+    topics: ["Alura", "Java", "Tailwind"],
+    languages: [
+      { name: "javascript", percent: "100%" }
+    ],
+    image: "/projects/one-alura.webp",
   },
   {
-    title: "AdventJS - Retos de programación con JavaScript y TypeScript",
-    description:
-      "Plataforma gratuita con retos de programación. Más de 1 millón de visitas en un mes. +50K retos completados. Creada desde cero con Next.js, React y Tailwind CSS.",
-    link: "https://adventjs.dev",
-    image: "/projects/adventjs.webp",
-    tags: [TAGS.NEXT, TAGS.TAILWIND],
+    title: "Proyecto academico en CSharp",
+    description: "Proyecto académico avanzado aplicando conceptos de programación, estructuras de datos y control de versiones.",
+    github: "https://github.com/bash20cu/Progra-4",
+    topics: ["C#", "Programación", "Estructuras de datos"],
+    languages: [{ name: "C#", percent: "100%" }],
+    image: "/projects/progra4.webp",
   },
-]
+  {
+    title: "Universidad",
+    description: "Repositorio con proyectos académicos en Java, Python, C# y bases de datos.",
+    github: "https://github.com/bash20cu/Universidad",
+    topics: ["Java", "Python", "C#"],
+    languages: [
+      { name: "Java", percent: "50%" },
+      { name: "Python", percent: "50%" }
+    ],
+    image: "/projects/universidad.webp",
+  },
+  {
+    title: "Connectivity Tool (Proyecto Privado)",
+    company: "Movate Inc.",
+    period: "2021 – 2023",
+    description: "Refactorización de un sistema legacy de troubleshooting basado en un único flujo a una arquitectura modular con múltiples workflows independientes (1LED, 3LED, 4LED, SBG8300, reboot). Implementación de carga dinámica de archivos JSON mediante jQuery y pipelines con Object.assign, mejorando la escalabilidad y reduciendo la complejidad del código. Creación de componentes reutilizables (plantillas LED charts) y manejo de estado con sessionStorage para optimizar la experiencia de usuario. El cambio permitió pasar de un único flowchart rígido a 5 flujos específicos por dispositivo, mejorando la mantenibilidad y la velocidad de desarrollo de nuevas variantes.",
+    disclaimer: "⚠️ Proyecto privado, propiedad de Arris - CommScope. Incluido en el portafolio como side project (sin exponer código).",
+    topics: ["jQuery", "Arquitectura modular", "Refactorización", "JSON Pipelines", "State Management"],
+    role: "Desarrollador de Software Junior",
+    image: "/projects/connectivitytool.webp",
+  }
+];
 ---
 
-<div class="flex flex-col gap-y-16">
-  {
-    PROJECTS.map(({ image, title, description, tags, link, github }) => (
-    <article class="flex flex-col space-x-0 space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
-  <div class="w-full md:w-1/2">
-    <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-      <img alt="Recién llegado vs 5 años en Nueva Zelanda" class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" loading="lazy" src={image} />
-    </div>
-  </div>
+<section class="flex flex-col gap-y-16">
+  {PROJECTS.map(({ title, description, github, link, topics, languages, image, disclaimer, role, company, period }) => (
+    <article class="flex flex-col space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
 
-  <div class="w-full md:w-1/2 md:max-w-lg">
-    <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">
-      {title}
-    </h3>
-    <div class="flex flex-wrap mt-2">
-      <ul class="flex flex-row mb-2 gap-x-2">
-          {tags.map((tag) => (
+      {/* Imagen */}
+      <div class="w-full md:w-1/2">
+        <div class="relative flex flex-col items-center shadow-xl overflow-clip rounded-xl transition duration-500 ease-in-out md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+          <img 
+            alt={title} 
+            class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" 
+            loading="lazy" 
+            src={image} 
+          />
+        </div>
+      </div>
+
+      {/* Info */}
+      <div class="w-full md:w-1/2 md:max-w-lg">
+        <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
+
+        {/* Company / Role */}
+        {company && <div class="text-sm text-gray-500">{company} {period ? `• ${period}` : ""}</div>}
+        {role && <div class="text-sm text-gray-500">{role}</div>}
+
+        {/* Disclaimer */}
+        {disclaimer && <div class="mt-1 text-sm text-yellow-600">{disclaimer}</div>}
+
+        {/* Topics */}
+        <ul class="flex flex-row mt-2 mb-2 gap-x-2 flex-wrap">
+          {topics.map(tag => (
             <li>
-              <span
-                class={`flex gap-x-2 rounded-full text-xs ${tag.class} py-1 px-2 `}
-              >
-                <tag.icon class="size-4" />
-                {tag.name}
+              <span class="flex gap-x-2 rounded-full text-xs bg-gray-700 text-white py-1 px-2">
+                #{tag}
               </span>
             </li>
           ))}
         </ul>
 
-      <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
-      <footer class="flex items-end justify-start mt-4 gap-x-4">
+        {/* Languages */}
+        {languages && languages.length > 0 && (
+          <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
+            {languages.map(lang => (
+              <span class="mr-3">
+                <strong>{lang.name}</strong> {lang.percent}
+              </span>
+            ))}
+          </div>
+        )}
+
+        {/* Descripción */}
+        <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
+
+        {/* Links */}
+        <footer class="flex items-end justify-start mt-4 gap-x-4">
           {github && (
             <LinkButton href={github}>
               <GitHub class="size-6" />
               Code
-              
             </LinkButton>
           )}
           {link && (
@@ -82,12 +114,7 @@ const PROJECTS = [
             </LinkButton>
           )}
         </footer>
-    </div>
-  </div>
-</article>
-    ))
-  }
-</div>
-
-
-
+      </div>
+    </article>
+  ))}
+</section>
