@@ -1,4 +1,6 @@
 ---
+import CVDownload from "./CVDownload.astro";
+
 const personalImageAlt = "Miguel Fernandez";
 ---
 
@@ -7,13 +9,12 @@ const personalImageAlt = "Miguel Fernandez";
   <div
     class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1">
     <p>
-      Soy Miguel Alejandro Fernández Arteaga, desarrollador con más de
-      6 años de experiencia en <strong>programación orientada a objetos</strong>
+      Soy Miguel Alejandro Fernández Arteaga, desarrollador con más de 6 años de
+      experiencia en <strong>programación orientada a objetos</strong>
       (Java, C#, JavaScript) y más de 3 años aplicando
       <strong>análisis de datos y automatización</strong> en entornos reales.
-      <strong>Busco nuevos retos en desarrollo de software</strong> donde pueda
-      aplicar mi experiencia en integración de sistemas, scripting y análisis
-      técnico.
+      <strong>Busco nuevos retos en desarrollo de software</strong> donde pueda aplicar
+      mi experiencia en integración de sistemas, scripting y análisis técnico.
     </p>
     <p>Algunos de mis logros más relevantes incluyen:</p>
     <ul>
@@ -25,37 +26,34 @@ const personalImageAlt = "Miguel Fernandez";
       <li>
         Refactorización de un <strong>código legacy</strong> de troubleshooting:
         pasé de un único flowchart rígido a
-        <strong>5 workflows modulares</strong> con carga dinámica de JSON,
-        mejorando la mantenibilidad y escalabilidad del sistema.
+        <strong>5 workflows modulares</strong> con carga dinámica de JSON, mejorando
+        la mantenibilidad y escalabilidad del sistema.
       </li>
       <li>
         Desarrollo de <strong>árboles de decisión web interactivos</strong> para
         soporte técnico, usando JavaScript y componentes reutilizables.
       </li>
       <li>
-        Implementación de <strong>interfaces modernas</strong> y mejoras de
-        rendimiento como Desarrollador de Software Junior en un proyecto paralelo
-        de Movate Inc.
+        Implementación de <strong>interfaces modernas</strong> y mejoras de rendimiento
+        como Desarrollador de Software Junior en un proyecto paralelo de Movate Inc.
       </li>
       <li>
         Experiencia inicial en <strong>soporte técnico bilingüe</strong>, donde
-        destaqué en métricas de calidad y aproveché mi formación en sistemas para
-        dar el salto hacia proyectos de programación y automatización.
+        destaqué en métricas de calidad y aproveché mi formación en sistemas
+        para dar el salto hacia proyectos de programación y automatización.
       </li>
     </ul>
     <p>
       Puedes ver estos y otros proyectos en mi
       <strong>
-        <a href="https://github.com/bash20cu" target="_blank">
-          GitHub
-        </a>
+        <a href="https://github.com/bash20cu" target="_blank"> GitHub </a>
       </strong>
     </p>
     <p>
       Creo firmemente en el <strong>trabajo en equipo</strong> como clave para el
-      éxito y me apasiona el <strong>aprendizaje continuo</strong>. Me motivan el
-      desarrollo web, la programación orientada a objetos y el análisis de datos,
-      siempre con la meta de crear soluciones eficientes e innovadoras.
+      éxito y me apasiona el <strong>aprendizaje continuo</strong>. Me motivan
+      el desarrollo web, la programación orientada a objetos y el análisis de
+      datos, siempre con la meta de crear soluciones eficientes e innovadoras.
     </p>
   </div>
 
@@ -66,6 +64,12 @@ const personalImageAlt = "Miguel Fernandez";
     alt="Foto de perfil de Miguel Alejandro Fernández Arteaga"
     class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20"
     style="object-position: 50% 50%"
-  />
-</article>
+    />
+  </article>
+  <!-- Descarga de CV -->
+  <div
+    class="flex flex-col sm:flex-row gap-2 justify-center md:justify-start mt-2 md:mt-0">
+    <CVDownload lang="es" />
+    <CVDownload lang="en" />
+  </div>
 

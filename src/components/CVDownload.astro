@@ -1,0 +1,25 @@
+---
+// CVDownload.astro
+const lang: 'es' | 'en' = (Astro.props?.lang as 'es' | 'en') || 'es';
+
+const fileMap = {
+  es: '/files/cv-es.pdf',
+  en: '/files/cv-en.pdf',
+};
+
+const fileUrl = fileMap[lang] || fileMap.es;
+import Badge from "../components/Badge.astro"
+---
+
+<div class="flex flex-col gap-2">
+  <Badge>
+
+  <a
+    href={fileUrl}
+    target="_blank"
+  >
+    {lang === 'es' ? 'Ver / Descargar CV (ES)' : 'View / Download CV (EN)'}
+  </a>
+      
+  </Badge>
+</div>
