@@ -1,0 +1,56 @@
+---
+const personalImageAlt = "Miguel Fernandez"
+import Badge from "../components/Badge.astro"
+import LinkedInIcon from "../components/icons/LinkedIn.astro"
+import MailIcon from "../components/icons/Mail.astro"
+import SocialPill from "../components/SocialPill.astro"
+import ContactPopup from "./ContactPopup.astro"
+---
+
+<div class="max-w-xl">
+  <div class="flex gap-4 mb-4">
+    <img
+      class="rounded-full shadow-lg size-16"
+      src="https://avatars.githubusercontent.com/u/53372986?v=4"
+      alt={personalImageAlt}
+    />
+    <a
+      href="https://linkedin.com/in/miguel1990"
+      target="_blank"
+      rel="noopener"
+      class="flex items-center transition md:justify-center md:hover:scale-105"
+    >
+      <Badge>Disponible para trabajar</Badge>
+    </a>
+  </div>
+  <h1
+    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white"
+  >
+    Hey, soy Miguel Fernandez <span class="wave">👋</span> 
+    <br />
+    Estudiante de Ingenieria de Software
+  </h1>
+  <p
+    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300"
+  >
+  Soy Miguel Alejandro Fernández Arteaga, desarrollador con experiencia en <strong>programación orientada a objetos, 
+  análisis de datos y automatización de procesos  </strong>. He trabajado en proyectos de optimización de flujos con VBA, 
+  Power Automate y GraphQL de Microsoft, además de crear aplicaciones web y soluciones interactivas.
+  Me apasiona el desarrollo web, la automatización y la creación de herramientas que generan impacto real en los equipos y empresas.
+</p>
+<section class="container mx-auto max-w-1xl px-2 py-3">
+<p class="mb-6">¿Tienes un proyecto o propuesta? Escríbeme:</p>
+</section>
+
+<nav class="flex flex-wrap gap-4 mt-8">
+    <ContactPopup />
+    <SocialPill href="mailto:migue900920@gmail.com">
+      <MailIcon class="size-4" />
+      Correo
+    </SocialPill>
+<SocialPill href="hhttps://www.linkedin.com/in/miguel1990/">
+  <LinkedInIcon class="size-4" />
+  LinkedIn
+</SocialPill>
+  </nav>
+</div>

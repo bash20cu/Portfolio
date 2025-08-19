@@ -1,0 +1,93 @@
+---
+/** Componente Popup de contacto */
+const { formAction = "https://formspree.io/f/meqnrapv" } = Astro.props;
+---
+
+<!-- Botón para abrir el popup -->
+<button
+  class="inline-flex items-center gap-2 px-4 py-2 font-medium shadow rounded-full bg-yellow-500 hover:bg-yellow-600 text-white"
+  onclick="document.getElementById('contactDialog')?.showModal()"
+>
+  ✉️ Contáctame
+</button>
+
+<!-- Popup centrado -->
+<dialog
+  id="contactDialog"
+  class="backdrop-blur w-[90vw] max-w-md p-0 rounded-2xl fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+  style="backdrop-filter: blur(3px);"
+>
+  <div class="bg-white dark:bg-zinc-900 text-zinc-800 dark:text-zinc-100 p-6 rounded-2xl flex flex-col gap-4">
+    
+    <!-- Botón cerrar -->
+    <button
+      class="self-end text-zinc-500 hover:text-zinc-700 dark:text-zinc-300 dark:hover:text-white"
+      aria-label="Cerrar"
+      onclick="document.getElementById('contactDialog')?.close()"
+    >✕</button>
+
+    <h2 class="text-lg font-bold">Hablemos</h2>
+    <p class="text-sm text-zinc-600 dark:text-zinc-300">Te responderé lo antes posible.</p>
+
+    <!-- Formulario Formspree -->
+    <form
+      action={formAction}
+      method="POST"
+      class="flex flex-col gap-3"
+      onsubmit="this.querySelector('button[type=submit]').disabled=true"
+    >
+      <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
+      <input
+        type="email"
+        name="email"
+        required
+        placeholder="Tu correo"
+        class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-3 py-2"
+      />
+
+      <textarea
+        name="message"
+        required
+        rows="4"
+        placeholder="Tu mensaje"
+        class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-3 py-2"
+      ></textarea>
+
+      <input type="hidden" name="_subject" value="Nuevo mensaje desde el Portfolio de Miguel" />
+      <input type="hidden" name="_next" value="/gracias/" />
+
+      <div class="flex gap-2 mt-2">
+        <button
+          type="submit"
+          class="inline-flex items-center gap-2 px-4 py-2 font-medium shadow rounded-full bg-yellow-500 hover:bg-yellow-600 text-white flex-1"
+        >Enviar</button>
+
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 px-4 py-2 font-medium shadow rounded-full bg-zinc-200 dark:bg-zinc-800 text-zinc-800 dark:text-zinc-100 flex-1"
+          onclick="document.getElementById('contactDialog')?.close()"
+        >Cancelar</button>
+      </div>
+    </form>
+
+    <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-2">
+      También puedes escribirme a
+      <a class="underline" href="mailto:migue900920@gmail.com">migue900920@gmail.com</a>.
+    </p>
+  </div>
+</dialog>
+
+<script is:inline>
+  // Cierra con clic fuera
+  const dlg = document.getElementById('contactDialog');
+  if (dlg) {
+    dlg.addEventListener('click', (e) => {
+      const rect = dlg.getBoundingClientRect();
+      if (
+        e.clientX < rect.left || e.clientX > rect.right ||
+        e.clientY < rect.top || e.clientY > rect.bottom
+      ) dlg.close();
+    });
+  }
+</script>
