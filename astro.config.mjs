@@ -10,4 +10,5 @@ export default defineConfig({
   },
   site: 'https://bash20cu.github.io/Portfolio/',
   base: '/Portfolio/', // 
+  outDir: './docs'
 });
