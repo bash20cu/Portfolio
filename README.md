@@ -1,36 +1,25 @@
-# Astro Starter Kit: Basics
+
+
+![Ejericio](https://avatars.githubusercontent.com/u/53372986?v=4)
+<picture>
+  <img src="https://avatars.githubusercontent.com/u/53372986?v=4" style="width:200px; border-radius: 30px" alt="MDN" />
+</picture>
+
+# Hey, soy Miguel Fernandez 👋 Estudiante de Ingenieria de Software
+
+Este es mi portfolio personal, donde podras encontrar mis proyectos y habilidades, desarrollador con experiencia en programación orientada a objetos, análisis de datos y automatización de procesos . He trabajado en proyectos de optimización de flujos con VBA, Power Automate y GraphQL de Microsoft, además de crear aplicaciones web y soluciones interactivas. Me apasiona el desarrollo web, la automatización y la creación de herramientas que generan impacto real en los equipos y empresas.
+
+He usado un proyecto de [Midudev](https://midu.dev/) como base para este portfolio, el cual puedes encontrar en [este repositorio](https://github.com/midudev/porfolio.dev)
+
+## Astro Starter Kit: Basics
 
 ```sh
 npm create astro@latest -- --template basics
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🧞 Comandos
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
-```
-
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
+Todos los comandos de este proyecto se ejecutan desde la raíz del proyecto, desde una terminal:
 
 | Command                   | Action                                           |
 | :------------------------ | :----------------------------------------------- |
@@ -40,7 +29,3 @@ All commands are run from the root of the project, from a terminal:
 | `npm run preview`         | Preview your build locally, before deploying     |
 | `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
 | `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
