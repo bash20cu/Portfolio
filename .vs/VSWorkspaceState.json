@@ -1,10 +1,9 @@
 {
   "ExpandedNodes": [
     "",
-    "\\.github",
     "\\src",
     "\\src\\components"
   ],
-  "SelectedNode": "\\src\\components\\Hero.astro",
+  "SelectedNode": "\\.github",
   "PreviewInSolutionExplorer": false
 }

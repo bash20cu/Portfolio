@@ -1,11 +1,9 @@
 
+# Hey, soy Miguel Fernandez 👋 Estudiante de Ingenieria de Software
 
-![Ejericio](https://avatars.githubusercontent.com/u/53372986?v=4)
 <picture>
   <img src="https://avatars.githubusercontent.com/u/53372986?v=4" style="width:200px; border-radius: 30px" alt="MDN" />
 </picture>
-
-# Hey, soy Miguel Fernandez 👋 Estudiante de Ingenieria de Software
 
 Este es mi portfolio personal, donde podras encontrar mis proyectos y habilidades, desarrollador con experiencia en programación orientada a objetos, análisis de datos y automatización de procesos . He trabajado en proyectos de optimización de flujos con VBA, Power Automate y GraphQL de Microsoft, además de crear aplicaciones web y soluciones interactivas. Me apasiona el desarrollo web, la automatización y la creación de herramientas que generan impacto real en los equipos y empresas.
 
