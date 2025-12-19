@@ -1,10 +1,10 @@
 export const PROJECTS = [
     {
         title: "RegistroDocente - Sistema de Gestión Académica",
-        description: "Plataforma integral para la gestión de instituciones educativas (Directivos, Docentes y Estudiantes). Desarrollada con Next.js (App Router), Server Actions y React 19. Utiliza PostgreSQL (Neon/Supabase) con Prisma ORM para la gestión de datos, y Auth.js v5 para la autenticación segura. La interfaz moderna está construida con Tailwind CSS y Shadcn/ui, asegurando una experiencia de usuario accesible y responsiva. Incluye CI/CD pipeline y tests automatizados con Jest.",
+        description: "Sistema integral de gestión académica con control de acceso basado en roles (Directivos, Docentes, Estudiantes). Desarrollado con Next.js 15 y React 19 (Server Actions). Stack robusto: PostgreSQL + Prisma ORM, validaciones con Zod y autenticación Auth.js v5. Features destacadas: dashboard analítico (Recharts), emails transaccionales (Resend) e integración con Telegram Bot para consultas en tiempo real. Infraestructura dockerizada y calidad asegurada con Jest/RTL.",
         github: null,
-        link: null,
-        topics: ["Next.js App Router", "Server Actions", "Prisma", "PostgreSQL", "Shadcn/ui", "Auth.js"],
+        link: "https://registro-docente-sage.vercel.app/",
+        topics: ["Next.js 15", "Prisma", "PostgreSQL", "Shadcn/ui", "Auth.js", "Telegram", "Jest"],
         languages: [{ name: "TypeScript", percent: "100%" }],
         image: "/projects/registro-docente.png",
     },

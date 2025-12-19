@@ -12,31 +12,26 @@ interface Props {
 const { title, company, description, link, date } = Astro.props
 ---
 
-<div
-  class="relative mx-12 pb-12 grid before:absolute before:left-[-35px] before:block before:h-full before:border-l-2 before:border-black/20 dark:before:border-white/15 before:content-[''] md:grid-cols-5 md:gap-10 md:space-x-4]"
->
-  <div class="relative pb-12 md:col-span-2">
-    <div class="sticky top-0">
-      <span class="absolute -left-[42px] rounded-full ring-4 ring-white dark:ring-gray-900 text-yellow-500 bg-yellow-500">
-        <svg xmlns="http://www.w3.org/2000/svg" class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
-          <circle cx="12" cy="12" r="8" />
-        </svg>
-      </span>
-
-      <h3 class="text-xl font-bold text-yellow-400">{title}</h3>
-      <h4 class="font-semibold text-xl text-gray-600 dark:text-white">{company}</h4>
-      <time class="p-0 m-0 text-sm text-gray-600/80 dark:text-white/80">{date}</time>
+<div class="relative flex flex-col p-6 gap-4 bg-white/5 dark:bg-white/5 rounded-xl border border-black/10 dark:border-white/10 shadow-sm transition-all hover:shadow-md hover:bg-white/10 dark:hover:bg-white/10 h-full">
+  <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-2">
+    <div>
+       <h3 class="text-xl font-bold text-yellow-500 dark:text-yellow-400">{title}</h3>
+       <h4 class="font-semibold text-lg text-gray-800 dark:text-gray-200">{company}</h4>
     </div>
+    <time class="text-sm font-mono text-gray-600 dark:text-gray-400 shrink-0 bg-gray-100 dark:bg-gray-800 px-3 py-1 rounded-full">{date}</time>
   </div>
-  <div class="relative flex flex-col gap-2 pb-4 text-gray-600 dark:text-gray-300 md:col-span-3">
+  
+  <div class="text-gray-600 dark:text-gray-300 text-pretty flex-grow">
     {description}
-    {
-      link && (
-        <LinkInline href={link}>
-          Saber más{" "}
-          <svg
+  </div>
+
+  {link && (
+    <div class="mt-2">
+      <LinkInline href={link}>
+        Saber más{" "}
+        <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="w-5 icon icon-tabler icon-tabler-chevron-right"
+            class="w-5 icon icon-tabler icon-tabler-chevron-right inline-block"
             width="24"
             height="24"
             viewBox="0 0 24 24"
@@ -51,8 +46,7 @@ const { title, company, description, link, date } = Astro.props
               <path d="M9 6l6 6l-6 6" />
             </>
           </svg>
-        </LinkInline>
-      )
-    }
-  </div>
+      </LinkInline>
+    </div>
+  )}
 </div>

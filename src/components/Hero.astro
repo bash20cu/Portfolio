@@ -10,7 +10,7 @@ import ContactPopup from "./ContactPopup.astro";
 <div class="max-w-xl">
   <div class="flex gap-4 mb-4">
     <img
-      class="rounded-full shadow-lg size-16"
+      class="rounded-full shadow-lg size-16 object-cover"
       src="https://avatars.githubusercontent.com/u/53372986?v=4"
       alt={personalImageAlt}
     />
@@ -22,14 +22,18 @@ import ContactPopup from "./ContactPopup.astro";
       <Badge>Disponible para trabajar</Badge>
     </a>
   </div>
+
   <h1
     class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white">
-    Hey, soy Miguel Fernandez <span class="wave">👋</span>
-    <br />
-    Estudiante de Ingenieria de Software
+    Hey, soy Miguel Fernandez <span class="animate-wave inline-block origin-[70%_70%]">👋</span>
   </h1>
+  
+  <h2 class="mt-2 text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-500 dark:from-yellow-300 dark:to-yellow-500">
+    Estudiante de Ingeniería de Software
+  </h2>
+
   <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300">
+    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300 text-pretty">
     Soy Miguel Alejandro Fernández Arteaga, desarrollador con experiencia en <strong
       >programación orientada a objetos, análisis de datos y automatización de
       procesos
@@ -39,10 +43,10 @@ import ContactPopup from "./ContactPopup.astro";
     la creación de herramientas que generan impacto real en los equipos y
     empresas.
   </p>
-  <section class="container mx-auto max-w-1xl px-2 py-3">
-    <p>¿Tienes un proyecto o propuesta? Escríbeme:</p>
 
-    <nav class="flex flex-wrap gap-4 mt-8">
+  <div class="mt-8">
+    <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">¿Tienes un proyecto o propuesta? Escríbeme:</p>
+    <nav class="flex flex-wrap gap-4">
       <ContactPopup />
       <SocialPill href="mailto:migue900920@gmail.com">
         <MailIcon class="size-4" />
@@ -53,5 +57,21 @@ import ContactPopup from "./ContactPopup.astro";
         LinkedIn
       </SocialPill>
     </nav>
-  </section>
+  </div>
 </div>
+
+<style>
+  @keyframes wave {
+    0% { transform: rotate(0.0deg) }
+    10% { transform: rotate(14.0deg) }  
+    20% { transform: rotate(-8.0deg) }
+    30% { transform: rotate(14.0deg) }
+    40% { transform: rotate(-4.0deg) }
+    50% { transform: rotate(10.0deg) }
+    60% { transform: rotate(0.0deg) } 
+    100% { transform: rotate(0.0deg) }
+  }
+  .animate-wave {
+    animation: wave 2s infinite;
+  }
+</style>

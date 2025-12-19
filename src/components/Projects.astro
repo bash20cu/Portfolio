@@ -6,74 +6,128 @@ import LinkButton from "./LinkButton.astro";
 import { PROJECTS } from "../data/projects";
 ---
 
-<section class="flex flex-col gap-y-16">
-  {PROJECTS.map(({ title, description, github, link, topics, languages, image, disclaimer, role, company, period }) => (
-    <article class="flex flex-col space-y-8 group md:flex-row md:space-x-8 md:space-y-0">
+<div class="embla relative" id="projects-carousel">
+  <div class="embla__container">
+    {PROJECTS.map(({ title, description, github, link, topics, languages, image, disclaimer, role, company, period }) => (
+      <div class="embla__slide">
+        <article class="flex flex-col gap-6 pb-4"> 
+          
+          {/* Top Section: Image + Header Info */}
+          <div class="flex flex-col md:flex-row gap-6 md:items-start">
+            
+            {/* Image (Smaller width now) */}
+            <div class="w-full md:w-[45%] shrink-0">
+              <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
+                <img 
+                  alt={title} 
+                  class="object-cover object-top w-full h-48 sm:h-full md:scale-110 md:group-hover:scale-105" 
+                  loading="lazy" 
+                  src={image} 
+                />
+              </div>
+            </div>
 
-      {/* Imagen */}
-      <div class="w-full md:w-1/2">
-        <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl md:group-hover:-translate-y-1 md:group-hover:shadow-2xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-          <img 
-            alt={title} 
-            class="object-cover object-top w-full h-56 transition duration-500 sm:h-full md:scale-110 md:group-hover:scale-105" 
-            loading="lazy" 
-            src={image} 
-          />
-        </div>
-      </div>
+            {/* Header Info (Title, Tags, Meta) */}
+            <div class="w-full md:w-[55%]">
+              <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
 
-      {/* Info */}
-      <div class="w-full md:w-1/2 md:max-w-lg">
-        <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
+              {/* Company / Role */}
+              {company && <div class="text-sm text-gray-500 mt-1">{company} {period ? `• ${period}` : ""}</div>}
+              {role && <div class="text-sm text-gray-500">{role}</div>}
 
-        {/* Company / Role */}
-        {company && <div class="text-sm text-gray-500">{company} {period ? `• ${period}` : ""}</div>}
-        {role && <div class="text-sm text-gray-500">{role}</div>}
+              {/* Disclaimer */}
+              {disclaimer && <div class="mt-1 text-sm text-yellow-600 dark:text-yellow-500 text-pretty">{disclaimer}</div>}
 
-        {/* Disclaimer */}
-        {disclaimer && <div class="mt-1 text-sm text-yellow-600">{disclaimer}</div>}
-
-        {/* Topics */}
-        <ul class="flex flex-row mt-2 mb-2 gap-x-2 flex-wrap">
-          {topics.map(tag => (
-            <li>
-              <span class="flex gap-x-2 rounded-full text-xs bg-gray-700 text-white py-1 px-2">
-                #{tag}
-              </span>
-            </li>
-          ))}
-        </ul>
-
-        {/* Languages */}
-        {languages && languages.length > 0 && (
-          <div class="mt-2 text-sm text-gray-600 dark:text-gray-400">
-            {languages.map(lang => (
-              <span class="mr-3">
-                <strong>{lang.name}</strong> {lang.percent}
-              </span>
-            ))}
+              {/* Topics */}
+              <ul class="flex flex-row mt-3 gap-x-2 flex-wrap mb-2">
+                {topics.map(tag => (
+                  <li class="mb-2">
+                    <span class="flex gap-x-2 rounded-full text-xs bg-gray-700 text-white py-1 px-2">
+                      {tag}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+              
+              {/* Languages */}
+              {languages && languages.length > 0 && (
+                <div class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                  {languages.map(lang => (
+                    <span class="mr-3">
+                      <strong>{lang.name}</strong> {lang.percent}
+                    </span>
+                  ))}
+                </div>
+              )}
+            </div>
           </div>
-        )}
 
-        {/* Descripción */}
-        <div class="mt-2 text-gray-700 dark:text-gray-400">{description}</div>
+          {/* Bottom Section: Description + Links */}
+          <div class="w-full">
+            <div class="text-gray-700 dark:text-gray-400 text-pretty">{description}</div>
 
-        {/* Links */}
-        <footer class="flex items-end justify-start mt-4 gap-x-4">
-          {github && (
-            <LinkButton href={github}>
-              <GitHub class="size-6" />
-              Code
-            </LinkButton>
-          )}
-          {link && (
-            <LinkButton href={link}>
-              <Link class="size-4" />
-              Preview
-            </LinkButton>
-          )}
-        </footer>
+            {/* Links */}
+            <footer class="flex items-end justify-start mt-4 gap-x-4">
+              {github && (
+                <LinkButton href={github}>
+                  <GitHub class="size-6" />
+                  Code
+                </LinkButton>
+              )}
+              {link && (
+                <LinkButton href={link}>
+                  <Link class="size-4" />
+                  Preview
+                </LinkButton>
+              )}
+            </footer>
+          </div>
+
+        </article>
       </div>
-    </article>
-  ))}
-</section>
+    ))}
+  </div>
+
+  {/* Navigation Buttons */}
+  {/* Navigation Buttons (Moved below to avoid overlap) */}
+  <div class="flex justify-end gap-2 mt-4 px-4">
+    <button class="embla__prev bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Anterior">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
+    </button>
+    <button class="embla__next bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Siguiente">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  .embla {
+    overflow: hidden;
+  }
+  .embla__container {
+    display: flex;
+    gap: 2rem; /* Espaciado entre slides */
+  }
+  .embla__slide {
+    flex: 0 0 100%;
+    min-width: 0;
+  }
+</style>
+
+<script>
+  import EmblaCarousel from 'embla-carousel'
+  import Autoplay from 'embla-carousel-autoplay'
+
+  const emblaNode = document.querySelector('#projects-carousel') as HTMLElement
+  const prevBtn = emblaNode?.querySelector('.embla__prev') as HTMLButtonElement
+  const nextBtn = emblaNode?.querySelector('.embla__next') as HTMLButtonElement
+
+  if (emblaNode) {
+    const emblaApi = EmblaCarousel(emblaNode, { loop: true }, [
+      Autoplay({ delay: 8000, stopOnInteraction: true })
+    ])
+
+    if (prevBtn) prevBtn.addEventListener('click', () => emblaApi.scrollPrev())
+    if (nextBtn) nextBtn.addEventListener('click', () => emblaApi.scrollNext())
+  }
+</script>

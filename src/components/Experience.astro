@@ -1,15 +1,65 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
-
 import { EXPERIENCE } from "../data/experience";
 ---
 
-<ol class="relative mt-16">
-  {
-    EXPERIENCE.map((experience) => (
-      <li class="">
-        <ExperienceItem {...experience} />
-      </li>
-    ))
+<div class="embla relative" id="experience-carousel">
+  <div class="embla__container py-4">
+    {
+      EXPERIENCE.map((experience) => (
+        <div class="embla__slide pl-4">
+          <ExperienceItem {...experience} />
+        </div>
+      ))
+    }
+  </div>
+
+  {/* Navigation Buttons for Experience (Moved below) */}
+  <div class="flex justify-end gap-2 mt-4 px-4">
+    <button class="embla__prev bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Anterior experiencia">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
+    </button>
+    <button class="embla__next bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Siguiente experiencia">
+      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+    </button>
+  </div>
+</div>
+
+<style>
+  .embla {
+    overflow: hidden;
   }
-</ol>
+  .embla__container {
+    display: flex;
+    /* gap managed by padding on slide for better alignment */
+  }
+   .embla__slide {
+    flex: 0 0 100%; /* All sizes: 1 card wide (container width controls visual size) */
+    min-width: 0;
+  }
+</style>
+
+<script>
+  import EmblaCarousel from 'embla-carousel'
+  import Autoplay from 'embla-carousel-autoplay'
+
+  const emblaNode = document.querySelector('#experience-carousel') as HTMLElement
+  const prevBtn = emblaNode?.querySelector('.embla__prev') as HTMLButtonElement
+  const nextBtn = emblaNode?.querySelector('.embla__next') as HTMLButtonElement
+
+  if (emblaNode) {
+    const emblaApi = EmblaCarousel(emblaNode, { 
+      loop: false, 
+      align: 'start',
+      containScroll: 'trimSnaps'
+    }, [
+      Autoplay({ delay: 8000, stopOnInteraction: true })
+    ])
+
+    if (prevBtn) prevBtn.addEventListener('click', () => emblaApi.scrollPrev())
+    if (nextBtn) nextBtn.addEventListener('click', () => emblaApi.scrollNext())
+    
+    // Optional: Auto-hide buttons if not needed? 
+    // Embla has `canScrollPrev` / `canScrollNext` API but requires listeners. keeping it simple.
+  }
+</script>
