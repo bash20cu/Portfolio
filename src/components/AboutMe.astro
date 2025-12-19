@@ -2,23 +2,16 @@
 import CVDownload from "./CVDownload.astro";
 
 const personalImageAlt = "Miguel Fernandez";
+const { i18n } = Astro.props
 ---
 
 <article
   class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
   <div
     class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1">
-    <p>
-      Me llamo Miguel Alejandro. Cuento con más de 6 años de experiencia en <strong>programación orientada a objetos (Java, C#, JavaScript)</strong> y 3 años especializándome en <strong>automatización de procesos</strong>.
-    </p>
-
-    <p>
-      He liderado la <strong>optimización de flujos de trabajo</strong> (VBA, Power Automate, GraphQL) reduciendo tiempos de análisis en un 60%, y he transformado sistemas legacy en <strong>arquitecturas modulares modernas</strong>. Me apasiona crear herramientas web interactivas que resuelvan problemas complejos y generen impacto real.
-    </p>
-
-    <p>
-      Siempre busco aprender y colaborar en equipo. Puedes ver más de mi código en <a href="https://github.com/bash20cu" target="_blank" class="font-bold hover:text-yellow-500 transition">GitHub</a>.
-    </p>
+    <p set:html={i18n.ABOUT.P1} />
+    <p set:html={i18n.ABOUT.P2} />
+    <p set:html={i18n.ABOUT.P3} />
   </div>
 
   <img

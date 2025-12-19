@@ -1,12 +1,13 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
-import { EXPERIENCE } from "../data/experience";
+
+const { experience } = Astro.props
 ---
 
 <div class="embla relative" id="experience-carousel">
   <div class="embla__container py-4">
     {
-      EXPERIENCE.map((experience) => (
+      experience.map((experience) => (
         <div class="embla__slide pl-4">
           <ExperienceItem {...experience} />
         </div>
@@ -43,23 +44,24 @@ import { EXPERIENCE } from "../data/experience";
   import EmblaCarousel from 'embla-carousel'
   import Autoplay from 'embla-carousel-autoplay'
 
-  const emblaNode = document.querySelector('#experience-carousel') as HTMLElement
-  const prevBtn = emblaNode?.querySelector('.embla__prev') as HTMLButtonElement
-  const nextBtn = emblaNode?.querySelector('.embla__next') as HTMLButtonElement
+  const initCarousel = () => {
+    const emblaNode = document.querySelector('#experience-carousel') as HTMLElement
+    const prevBtn = emblaNode?.querySelector('.embla__prev') as HTMLButtonElement
+    const nextBtn = emblaNode?.querySelector('.embla__next') as HTMLButtonElement
 
-  if (emblaNode) {
-    const emblaApi = EmblaCarousel(emblaNode, { 
-      loop: false, 
-      align: 'start',
-      containScroll: 'trimSnaps'
-    }, [
-      Autoplay({ delay: 8000, stopOnInteraction: true })
-    ])
+    if (emblaNode) {
+      const emblaApi = EmblaCarousel(emblaNode, { 
+        loop: false, 
+        align: 'start',
+        containScroll: 'trimSnaps'
+      }, [
+        Autoplay({ delay: 8000, stopOnInteraction: true })
+      ])
 
-    if (prevBtn) prevBtn.addEventListener('click', () => emblaApi.scrollPrev())
-    if (nextBtn) nextBtn.addEventListener('click', () => emblaApi.scrollNext())
-    
-    // Optional: Auto-hide buttons if not needed? 
-    // Embla has `canScrollPrev` / `canScrollNext` API but requires listeners. keeping it simple.
+      if (prevBtn) prevBtn.onclick = () => emblaApi.scrollPrev()
+      if (nextBtn) nextBtn.onclick = () => emblaApi.scrollNext()
+    }
   }
+
+  document.addEventListener('astro:page-load', initCarousel)
 </script>

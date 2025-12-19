@@ -1,0 +1,15 @@
+---
+const { currentLocale = "es" } = Astro.props;
+
+const isSpanish = currentLocale === "es";
+const href = isSpanish ? "/en" : "/";
+const label = isSpanish ? "EN" : "ES";
+---
+
+<a
+  href={href}
+  class="relative ml-1 mr-1 appearance-none border-none flex items-center justify-center hover:scale-110 transition font-semibold text-sm px-2 py-1 rounded-md bg-transparent hover:bg-black/5 dark:hover:bg-white/10"
+  aria-label="Cambiar idioma"
+>
+  {label}
+</a>

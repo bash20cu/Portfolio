@@ -3,12 +3,12 @@ import GitHub from "./icons/GitHub.astro";
 import Link from "./icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
 
-import { PROJECTS } from "../data/projects";
+const { projects, i18n } = Astro.props
 ---
 
 <div class="embla relative" id="projects-carousel">
   <div class="embla__container">
-    {PROJECTS.map(({ title, description, github, link, topics, languages, image, disclaimer, role, company, period }) => (
+    {projects.map(({ title, description, github, link, topics, languages, image, disclaimer, role, company, period }) => (
       <div class="embla__slide">
         <article class="flex flex-col gap-6 pb-4"> 
           
@@ -71,13 +71,13 @@ import { PROJECTS } from "../data/projects";
               {github && (
                 <LinkButton href={github}>
                   <GitHub class="size-6" />
-                  Code
+                  {i18n?.PROJECTS?.CODE || "Code"}
                 </LinkButton>
               )}
               {link && (
                 <LinkButton href={link}>
                   <Link class="size-4" />
-                  Preview
+                  {i18n?.PROJECTS?.PREVIEW || "Preview"}
                 </LinkButton>
               )}
             </footer>
@@ -118,16 +118,24 @@ import { PROJECTS } from "../data/projects";
   import EmblaCarousel from 'embla-carousel'
   import Autoplay from 'embla-carousel-autoplay'
 
-  const emblaNode = document.querySelector('#projects-carousel') as HTMLElement
-  const prevBtn = emblaNode?.querySelector('.embla__prev') as HTMLButtonElement
-  const nextBtn = emblaNode?.querySelector('.embla__next') as HTMLButtonElement
+  const initCarousel = () => {
+    const emblaNode = document.querySelector('#projects-carousel') as HTMLElement
+    const prevBtn = emblaNode?.querySelector('.embla__prev') as HTMLButtonElement
+    const nextBtn = emblaNode?.querySelector('.embla__next') as HTMLButtonElement
 
-  if (emblaNode) {
-    const emblaApi = EmblaCarousel(emblaNode, { loop: true }, [
-      Autoplay({ delay: 8000, stopOnInteraction: true })
-    ])
+    if (emblaNode) {
+      const emblaApi = EmblaCarousel(emblaNode, { loop: true }, [
+        Autoplay({ delay: 8000, stopOnInteraction: true })
+      ])
 
-    if (prevBtn) prevBtn.addEventListener('click', () => emblaApi.scrollPrev())
-    if (nextBtn) nextBtn.addEventListener('click', () => emblaApi.scrollNext())
+      // Clean up previous listeners if any (though usually simpler to just add new ones on refresh)
+      // A more robust way is to clone node or track listeners. 
+      // For Astro Page Load, simple addEventListener is fine since DOM is fresh.
+      
+      if (prevBtn) prevBtn.onclick = () => emblaApi.scrollPrev()
+      if (nextBtn) nextBtn.onclick = () => emblaApi.scrollNext()
+    }
   }
+
+  document.addEventListener('astro:page-load', initCarousel)
 </script>

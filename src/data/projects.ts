@@ -1,4 +1,4 @@
-export const PROJECTS = [
+const PROJECTS_ES = [
     {
         title: "RegistroDocente - Sistema de Gestión Académica",
         description: "Sistema integral de gestión académica con control de acceso basado en roles (Directivos, Docentes, Estudiantes). Desarrollado con Next.js 15 y React 19 (Server Actions). Stack robusto: PostgreSQL + Prisma ORM, validaciones con Zod y autenticación Auth.js v5. Features destacadas: dashboard analítico (Recharts), emails transaccionales (Resend) e integración con Telegram Bot para consultas en tiempo real. Infraestructura dockerizada y calidad asegurada con Jest/RTL.",
@@ -49,3 +49,60 @@ export const PROJECTS = [
         image: "/projects/connectivitytool.webp",
     }
 ];
+
+const PROJECTS_EN = [
+    {
+        title: "RegistroDocente - Academic Management System",
+        description: "Comprehensive academic management system with role-based access control (Admin, Teachers, Students). Developed with Next.js 15 and React 19 (Server Actions). Robust stack: PostgreSQL + Prisma ORM, Zod validations, and Auth.js v5. Key features: analytical dashboard (Recharts), transactional emails (Resend), and Telegram Bot integration for real-time queries. Dockerized infrastructure and QA with Jest/RTL.",
+        github: null,
+        link: "https://registro-docente-sage.vercel.app/",
+        topics: ["Next.js 15", "Prisma", "PostgreSQL", "Shadcn/ui", "Auth.js", "Telegram", "Jest"],
+        languages: [{ name: "TypeScript", percent: "100%" }],
+        image: "/projects/registro-docente.png",
+    },
+    {
+        title: "ONE-Alura",
+        description: "Alura Latam Final Project",
+        github: "https://github.com/bash20cu/ONE-Alura",
+        link: null,
+        topics: ["Alura", "Java", "Tailwind"],
+        languages: [
+            { name: "javascript", percent: "100%" }
+        ],
+        image: "/projects/one-alura.webp",
+    },
+    {
+        title: "CSharp Academic Project",
+        description: "Advanced academic project applying programming concepts, data structures, and version control.",
+        github: "https://github.com/bash20cu/Progra-4",
+        topics: ["C#", "programming", "Data Structures"],
+        languages: [{ name: "C#", percent: "100%" }],
+        image: "/projects/progra4.webp",
+    },
+    {
+        title: "University",
+        description: "Repository with academic projects in Java, Python, C#, and databases.",
+        github: "https://github.com/bash20cu/Universidad",
+        topics: ["Java", "Python", "C#"],
+        languages: [
+            { name: "Java", percent: "50%" },
+            { name: "Python", percent: "50%" }
+        ],
+        image: "/projects/universidad.webp",
+    },
+    {
+        title: "Connectivity Tool (Private Project)",
+        company: "Movate Inc.",
+        period: "2021 – 2023",
+        description: "Refactoring of a legacy troubleshooting system based on a single flow to a modular architecture with multiple independent workflows (1LED, 3LED, 4LED, SBG8300, reboot). Implementation of dynamic JSON file loading via jQuery and pipelines with Object.assign, improving scalability and reducing code complexity. Creation of reusable components (LED chart templates) and state management with sessionStorage to optimize user experience. The change allowed moving from a single rigid flowchart to 5 specific flows per device, improving maintainability and development speed of new variants.",
+        disclaimer: "⚠️ Private project, property of Arris - CommScope. Included in portfolio as side project (without exposing code).",
+        topics: ["jQuery", "Modular Architecture", "Refactoring", "JSON Pipelines", "State Management"],
+        role: "Junior Software Developer",
+        image: "/projects/connectivitytool.webp",
+    }
+];
+
+export const getProjects = ({ currentLocale = 'es' }: { currentLocale?: string }) => {
+    if (currentLocale === 'en') return PROJECTS_EN
+    return PROJECTS_ES
+}

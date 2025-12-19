@@ -1,1 +1,0 @@
-import{E as l,A as c}from"./embla-carousel-autoplay.esm.DbqMuwPS.js";const e=document.querySelector("#projects-carousel"),o=e?.querySelector(".embla__prev"),r=e?.querySelector(".embla__next");if(e){const t=l(e,{loop:!0},[c({delay:8e3,stopOnInteraction:!0})]);o&&o.addEventListener("click",()=>t.scrollPrev()),r&&r.addEventListener("click",()=>t.scrollNext())}
