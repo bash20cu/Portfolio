@@ -96,17 +96,19 @@ import Badge from "../components/Badge.astro";
 
 <script is:inline>
   // Cierra con clic fuera
-  const dlg = document.getElementById("contactDialog");
-  if (dlg) {
-    dlg.addEventListener("click", (e) => {
-      const rect = dlg.getBoundingClientRect();
-      if (
-        e.clientX < rect.left ||
-        e.clientX > rect.right ||
-        e.clientY < rect.top ||
-        e.clientY > rect.bottom
-      )
-        dlg.close();
-    });
+  {
+    const dlg = document.getElementById("contactDialog");
+    if (dlg) {
+      dlg.addEventListener("click", (e) => {
+        const rect = dlg.getBoundingClientRect();
+        if (
+          e.clientX < rect.left ||
+          e.clientX > rect.right ||
+          e.clientY < rect.top ||
+          e.clientY > rect.bottom
+        )
+          dlg.close();
+      });
+    }
   }
 </script>

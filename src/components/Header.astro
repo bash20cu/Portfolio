@@ -1,6 +1,8 @@
 ---
 import ThemeToggle from "./ThemeToggle.astro"
 import LanguageToggle from "./LanguageToggle.astro"
+import MenuIcon from "./icons/Menu.astro"
+import CloseIcon from "./icons/Close.astro"
 
 const { i18n, currentLocale } = Astro.props
 
@@ -35,8 +37,10 @@ const navItems = [
 ---
 
 <header class="fixed top-0 left-0 z-50 w-full backdrop-blur-md bg-white/80 dark:bg-zinc-900/80 shadow-md">
-  <div class="flex items-center justify-center gap-4 max-w-screen-xl mx-auto px-4 py-2">
-    <nav class="flex items-center text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 gap-4">
+  <div class="flex items-center justify-between md:justify-center gap-4 max-w-screen-xl mx-auto px-4 py-2">
+    
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center text-sm font-medium rounded-full text-gray-700 dark:text-gray-200 gap-4">
       {navItems.map((link) => (
         <a
           class="relative px-3 py-2 transition-colors duration-200 hover:text-blue-500 dark:hover:text-blue-400"
@@ -47,17 +51,81 @@ const navItems = [
         </a>
       ))}
     </nav>
-    <div class="flex items-center gap-2 border-l border-gray-300 dark:border-gray-700 pl-4 text-gray-700 dark:text-gray-200">
-      <ThemeToggle />
-      <LanguageToggle currentLocale={currentLocale} />
+
+    <!-- Controls & Mobile Menu Button -->
+    <div class="flex items-center gap-2">
+        <div class="flex items-center gap-2 border-l border-gray-300 dark:border-gray-700 pl-4 text-gray-700 dark:text-gray-200">
+          <ThemeToggle />
+          <LanguageToggle currentLocale={currentLocale} />
+        </div>
+
+        <button id="menu-btn" class="md:hidden text-gray-700 dark:text-gray-200 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors" aria-label="Menu">
+            <MenuIcon class="size-6" />
+        </button>
     </div>
+  </div>
+
+  <!-- Mobile Menu Overlay -->
+  <div id="mobile-menu" class="fixed inset-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-8 text-xl opacity-0 transition-opacity duration-300 h-dvh w-screen">
+      <button id="close-menu-btn" class="absolute top-4 right-4 text-gray-700 dark:text-gray-200 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors" aria-label="Cerrar menú">
+        <CloseIcon class="size-8" />
+      </button>
+      
+      {navItems.map(link => (
+          <a 
+            href={link.url} 
+            class="mobile-link text-gray-800 dark:text-gray-100 font-semibold text-3xl hover:text-blue-600 dark:hover:text-blue-400"
+          >
+             {link.title} 
+          </a>
+      ))}
   </div>
 </header>
 
 <script>
   document.addEventListener("astro:page-load", () => {
+    const menuBtn = document.getElementById("menu-btn")
+    const closeBtn = document.getElementById("close-menu-btn")
+    const mobileMenu = document.getElementById("mobile-menu")
+    const mobileLinks = document.querySelectorAll(".mobile-link")
+
+    const toggleMenu = () => {
+        if (!mobileMenu) return
+        const isHidden = mobileMenu.classList.contains("hidden")
+        
+        if (isHidden) {
+            mobileMenu.classList.remove("hidden")
+            // Small delay to allow display:flex to apply before opacity transition
+            requestAnimationFrame(() => {
+                mobileMenu.classList.remove("opacity-0")
+            })
+            document.body.style.overflow = "hidden" // Disable scrolling
+        } else {
+            mobileMenu.classList.add("opacity-0")
+            setTimeout(() => {
+                mobileMenu.classList.add("hidden")
+            }, 300) // Match transition duration
+            document.body.style.overflow = "" // Enable scrolling
+        }
+    }
+
+    menuBtn?.addEventListener("click", toggleMenu)
+    closeBtn?.addEventListener("click", toggleMenu)
+
+    mobileLinks.forEach(link => {
+        link.addEventListener("click", () => {
+             // Close menu when a link is clicked
+             mobileMenu?.classList.add("opacity-0")
+             setTimeout(() => {
+                mobileMenu?.classList.add("hidden")
+                document.body.style.overflow = ""
+             }, 300)
+        })
+    })
+
+    // Existing IntersectionObserver logic for Desktop active state
     const sections = document.querySelectorAll("section")
-    const navItems = document.querySelectorAll("header nav a")
+    const navItems = document.querySelectorAll("header nav a") // Target desktop links only
 
     const callback = (entries: any[]) => {
       entries.forEach((entry) => {
@@ -83,7 +151,6 @@ const navItems = [
       observer.observe(section)
     })
 
-    // Cleanup function
     document.onvisibilitychange = () => {
       if (document.visibilityState === "hidden") {
         observer.disconnect()
