@@ -66,7 +66,7 @@ const navItems = [
   </div>
 
   <!-- Mobile Menu Overlay -->
-  <div id="mobile-menu" class="fixed inset-0 z-50 bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-8 text-xl opacity-0 transition-opacity duration-300 h-dvh w-screen">
+  <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-8 text-xl opacity-0 transition-opacity duration-300 h-dvh w-screen">
       <button id="close-menu-btn" class="absolute top-4 right-4 text-gray-700 dark:text-gray-200 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors" aria-label="Cerrar menú">
         <CloseIcon class="size-8" />
       </button>
@@ -74,7 +74,7 @@ const navItems = [
       {navItems.map(link => (
           <a 
             href={link.url} 
-            class="mobile-link text-gray-800 dark:text-gray-100 font-semibold text-3xl hover:text-blue-600 dark:hover:text-blue-400"
+            class="mobile-link text-gray-800 dark:text-gray-100 font-medium text-2xl hover:text-blue-600 dark:hover:text-blue-400"
           >
              {link.title} 
           </a>

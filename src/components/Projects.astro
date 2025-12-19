@@ -10,17 +10,17 @@ const { projects, i18n } = Astro.props
   <div class="embla__container">
     {projects.map(({ title, description, github, link, topics, languages, image, disclaimer, role, company, period }) => (
       <div class="embla__slide">
-        <article class="flex flex-col gap-6 pb-4"> 
+        <article class="flex flex-col gap-4 pb-2"> 
           
           {/* Top Section: Image + Header Info */}
-          <div class="flex flex-col md:flex-row gap-6 md:items-start">
+          <div class="flex flex-col md:flex-row gap-4 md:items-start">
             
             {/* Image (Smaller width now) */}
             <div class="w-full md:w-[45%] shrink-0">
               <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
                 <img 
                   alt={title} 
-                  class="object-cover object-top w-full h-48 sm:h-full md:scale-110 md:group-hover:scale-105" 
+                  class="object-cover object-top w-full h-40 sm:h-full md:scale-110 md:group-hover:scale-105" 
                   loading="lazy" 
                   src={image} 
                 />
@@ -29,20 +29,20 @@ const { projects, i18n } = Astro.props
 
             {/* Header Info (Title, Tags, Meta) */}
             <div class="w-full md:w-[55%]">
-              <h3 class="text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
+              <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
 
               {/* Company / Role */}
-              {company && <div class="text-sm text-gray-500 mt-1">{company} {period ? `• ${period}` : ""}</div>}
-              {role && <div class="text-sm text-gray-500">{role}</div>}
+              {company && <div class="text-xs md:text-sm text-gray-500 mt-1">{company} {period ? `• ${period}` : ""}</div>}
+              {role && <div class="text-xs md:text-sm text-gray-500">{role}</div>}
 
               {/* Disclaimer */}
-              {disclaimer && <div class="mt-1 text-sm text-yellow-600 dark:text-yellow-500 text-pretty">{disclaimer}</div>}
+              {disclaimer && <div class="mt-1 text-xs md:text-sm text-yellow-600 dark:text-yellow-500 text-pretty">{disclaimer}</div>}
 
               {/* Topics */}
-              <ul class="flex flex-row mt-3 gap-x-2 flex-wrap mb-2">
+              <ul class="flex flex-row mt-2 gap-x-2 flex-wrap mb-1">
                 {topics.map(tag => (
-                  <li class="mb-2">
-                    <span class="flex gap-x-2 rounded-full text-xs bg-gray-700 text-white py-1 px-2">
+                  <li class="mb-1">
+                    <span class="flex gap-x-2 rounded-full text-[10px] md:text-xs bg-gray-700 text-white py-1 px-2">
                       {tag}
                     </span>
                   </li>
@@ -51,7 +51,7 @@ const { projects, i18n } = Astro.props
               
               {/* Languages */}
               {languages && languages.length > 0 && (
-                <div class="mt-1 text-sm text-gray-600 dark:text-gray-400">
+                <div class="mt-1 text-xs md:text-sm text-gray-600 dark:text-gray-400">
                   {languages.map(lang => (
                     <span class="mr-3">
                       <strong>{lang.name}</strong> {lang.percent}
