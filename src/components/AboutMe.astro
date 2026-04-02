@@ -5,28 +5,38 @@ const personalImageAlt = "Miguel Fernandez";
 const { i18n } = Astro.props
 ---
 
-<article
-  class="flex flex-col items-center justify-center gap-8 text-gray-700 dark:text-gray-300 md:flex-row">
-  <div
-    class="[&>p]:mb-4 [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty order-2 md:order-1">
-    <p set:html={i18n.ABOUT.P1} />
-    <p set:html={i18n.ABOUT.P2} />
-    <p set:html={i18n.ABOUT.P3} />
-  </div>
-
-  <img
-    width="200"
-    height="200"
-    src="https://avatars.githubusercontent.com/u/53372986?v=4"
-    alt="Foto de perfil de Miguel Alejandro Fernández Arteaga"
-    class="order-1 object-cover w-64 h-full p-1 md:order-2 rotate-3 lg:p-2 lg:w-64 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20"
-    style="object-position: 50% 50%"
-    />
+<div class="grid gap-6 xl:grid-cols-[minmax(0,1.1fr)_minmax(18rem,0.9fr)] xl:items-start">
+  <article class="rounded-[2rem] border border-black/10 bg-white/65 p-6 text-gray-700 shadow-sm backdrop-blur dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
+    <div class="[&>p]:mb-4 [&>p]:indent-6 [&>p]:[text-align:justify] [&>p>strong]:text-yellow-500 dark:[&>p>strong]:text-yellow-100 [&>p>strong]:font-normal [&>p>strong]:font-mono text-pretty">
+      <p set:html={i18n.ABOUT.P1} />
+      <p set:html={i18n.ABOUT.P2} />
+      <p set:html={i18n.ABOUT.P3} />
+    </div>
   </article>
-  <!-- Descarga de CV -->
-  <div
-    class="flex flex-col sm:flex-row gap-2 justify-center md:justify-start mt-2 md:mt-0">
+
+  <aside class="grid gap-4">
+    <article class="rounded-[2rem] border border-black/10 bg-gradient-to-br from-white/80 via-amber-50/60 to-sky-100/60 p-6 shadow-sm dark:border-white/10 dark:from-white/[0.04] dark:via-amber-400/5 dark:to-sky-400/10">
+      <div class="flex items-center gap-4">
+        <img
+          width="200"
+          height="200"
+          src="https://avatars.githubusercontent.com/u/53372986?v=4"
+          alt="Foto de perfil de Miguel Alejandro Fernández Arteaga"
+          class="object-cover w-24 h-24 p-1 rotate-3 aspect-square rounded-2xl bg-black/20 dark:bg-yellow-500/5 ring-1 ring-black/70 dark:ring-white/20"
+          style="object-position: 50% 50%"
+        />
+        <div>
+          <p class="text-xs uppercase tracking-[0.2em] text-gray-500 dark:text-gray-400">Profile</p>
+          <p class="mt-2 text-xl font-semibold text-gray-900 dark:text-white">Software, data, operations</p>
+          <p class="mt-2 indent-6 text-sm leading-6 text-gray-700 [text-align:justify] dark:text-gray-300">Frontend, backend, BI, automation and product thinking shaped by real operations.</p>
+        </div>
+      </div>
+    </article>
+
+    <div class="flex flex-col sm:flex-row gap-2 justify-center xl:justify-start mt-2 md:mt-0">
     <CVDownload lang="es" label={i18n.ABOUT.CV_ES} />
     <CVDownload lang="en" label={i18n.ABOUT.CV_EN} />
-  </div>
+    </div>
+  </aside>
+</div>
 

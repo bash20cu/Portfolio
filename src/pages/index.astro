@@ -30,42 +30,32 @@ const experience = getExperience({ currentLocale })
   i18n={i18n}
   currentLocale={currentLocale}
 >
-  <main class="px-4 py-6 md:px-6 md:py-10 xl:py-14 max-w-7xl mx-auto">
-    <SectionContainer class="py-0 w-full md:max-w-none">
+  <main class="mx-auto max-w-[min(100rem,calc(100vw-1.5rem))] px-4 py-6 md:px-6 md:py-10 xl:px-8 xl:py-14 2xl:px-10">
+    <SectionContainer wide={true} class="py-0 w-full lg:!max-w-[min(94rem,calc(100vw-3rem))] lg:min-h-[calc(100svh-4rem)] lg:flex lg:items-center">
       <Hero i18n={i18n} currentLocale={currentLocale} />
     </SectionContainer>
 
-    <SectionContainer id="valor" class="mt-18 py-0 w-full md:max-w-none">
+    <SectionContainer wide={true} id="valor" class="mt-18 py-0 w-full">
       <TitleSection>{i18n.POSITIONING.TITLE}</TitleSection>
-      <p class="mb-8 max-w-3xl text-gray-700 dark:text-gray-300 text-pretty">{i18n.POSITIONING.INTRO}</p>
+      <p class="mb-8 max-w-3xl indent-6 text-gray-700 [text-align:justify] dark:text-gray-300 text-pretty">{i18n.POSITIONING.INTRO}</p>
       <Positioning i18n={i18n} />
     </SectionContainer>
 
-    <SectionContainer id="roadmap" class="mt-18 py-0 w-full md:max-w-none">
+    <SectionContainer wide={true} id="roadmap" class="mt-18 py-0 w-full">
       <TitleSection>{i18n.JOURNEY.TITLE}</TitleSection>
-      <p class="mb-8 max-w-3xl text-gray-700 dark:text-gray-300 text-pretty">{i18n.JOURNEY.INTRO}</p>
+      <p class="mb-8 max-w-3xl indent-6 text-gray-700 [text-align:justify] dark:text-gray-300 text-pretty">{i18n.JOURNEY.INTRO}</p>
       <Journey i18n={i18n} />
     </SectionContainer>
 
-    <SectionContainer id="proyectos" class="mt-18 py-0 w-full md:max-w-none" wide={true}>
-      <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <TitleSection className="mb-0">
-          <CodeIcon class="size-7" />
-          {i18n.PROJECTS.TITLE}
-        </TitleSection>
-        <div class="flex shrink-0 gap-2 self-start sm:self-auto">
-          <button id="projects-header-prev" class="rounded-full border border-slate-200 bg-white p-2 text-slate-800 shadow-sm transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" aria-label={i18n.UI.PREVIOUS_PROJECT}>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
-          </button>
-          <button id="projects-header-next" class="rounded-full border border-slate-200 bg-white p-2 text-slate-800 shadow-sm transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" aria-label={i18n.UI.NEXT_PROJECT}>
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
-          </button>
-        </div>
-      </div>
+    <SectionContainer wide={true} id="proyectos" class="mt-18 py-0 w-full">
+      <TitleSection>
+        <CodeIcon class="size-7" />
+        {i18n.PROJECTS.TITLE}
+      </TitleSection>
       <Projects projects={projects} i18n={i18n} />
     </SectionContainer>
 
-    <SectionContainer id="experiencia" class="mt-18 py-0 w-full md:max-w-none">
+    <SectionContainer wide={true} id="experiencia" class="mt-18 py-0 w-full">
       <TitleSection>
         <Briefcase class="size-8" />
         {i18n.EXPERIENCE.TITLE}
@@ -73,13 +63,13 @@ const experience = getExperience({ currentLocale })
       <Experience experience={experience} i18n={i18n} />
     </SectionContainer>
 
-    <SectionContainer id="aprendizaje" class="mt-18 py-0 w-full md:max-w-none">
+    <SectionContainer wide={true} id="aprendizaje" class="mt-18 py-0 w-full">
       <TitleSection>{i18n.LEARNING.TITLE}</TitleSection>
-      <p class="mb-8 max-w-3xl text-gray-700 dark:text-gray-300 text-pretty">{i18n.LEARNING.INTRO}</p>
+      <p class="mb-8 max-w-3xl indent-6 text-gray-700 [text-align:justify] dark:text-gray-300 text-pretty">{i18n.LEARNING.INTRO}</p>
       <LearningMap i18n={i18n} />
     </SectionContainer>
 
-    <SectionContainer id="sobre-mi" class="mt-18 py-0 w-full md:max-w-none">
+    <SectionContainer wide={true} id="sobre-mi" class="mt-18 py-0 w-full">
       <TitleSection>
         <ProfileCheck class="size-8" />
         {i18n.ABOUT.TITLE}
