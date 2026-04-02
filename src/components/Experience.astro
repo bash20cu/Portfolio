@@ -1,7 +1,7 @@
 ---
 import ExperienceItem from "./ExperienceItem.astro";
 
-const { experience } = Astro.props
+const { experience, i18n } = Astro.props
 ---
 
 <div class="embla relative" id="experience-carousel">
@@ -17,10 +17,10 @@ const { experience } = Astro.props
 
   {/* Navigation Buttons for Experience (Moved below) */}
   <div class="flex justify-end gap-2 mt-4 px-4">
-    <button class="embla__prev bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Anterior experiencia">
+    <button class="embla__prev bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label={i18n.UI.PREVIOUS_EXPERIENCE}>
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
     </button>
-    <button class="embla__next bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Siguiente experiencia">
+    <button class="embla__next bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label={i18n.UI.NEXT_EXPERIENCE}>
       <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
     </button>
   </div>

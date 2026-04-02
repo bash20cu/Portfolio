@@ -1,0 +1,17 @@
+---
+const { i18n } = Astro.props
+const pillars = i18n.POSITIONING.PILLARS
+---
+
+<div class="grid gap-4 md:grid-cols-3">
+  {pillars.map((pillar) => (
+    <article class="min-w-0 border-t border-black/10 pt-4 dark:border-white/10">
+      <h3 class="text-xl font-semibold text-gray-900 dark:text-white text-balance">
+        {pillar.title}
+      </h3>
+      <p class="mt-3 text-sm leading-7 text-gray-700 dark:text-gray-300 text-pretty">
+        {pillar.description}
+      </p>
+    </article>
+  ))}
+</div>

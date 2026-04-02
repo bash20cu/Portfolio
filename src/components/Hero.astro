@@ -5,14 +5,19 @@ import LinkedInIcon from "../components/icons/LinkedIn.astro";
 import MailIcon from "../components/icons/Mail.astro";
 import SocialPill from "../components/SocialPill.astro";
 import ContactPopup from "./ContactPopup.astro";
+import LinkButton from "./LinkButton.astro";
 
-const { i18n } = Astro.props
+const { i18n, currentLocale = "es" } = Astro.props
+const projectsHref = currentLocale === "en" ? "/en/#proyectos" : "/#proyectos"
+const resumeHref = currentLocale === "en" ? "/files/cv_en_data_analist.pdf" : "/files/cv_es_data_analist.pdf"
 ---
 
-<div class="max-w-xl">
-  <div class="flex gap-4 mb-4">
+<div class="w-full max-w-3xl">
+  <div class="flex flex-wrap gap-4 mb-6 items-center">
     <img
-      class="rounded-full shadow-lg size-16 object-cover"
+      width="96"
+      height="96"
+      class="rounded-3xl shadow-lg size-20 object-cover ring-1 ring-black/10 dark:ring-white/10"
       src="https://avatars.githubusercontent.com/u/53372986?v=4"
       alt={personalImageAlt}
     />
@@ -20,34 +25,51 @@ const { i18n } = Astro.props
       href="https://linkedin.com/in/miguel1990"
       target="_blank"
       rel="noopener"
-      class="flex items-center transition md:justify-center md:hover:scale-105">
+      class="flex max-w-full items-center transition md:justify-center md:hover:scale-105">
       <Badge>{i18n.HERO.AVAILABLE_WORK}</Badge>
     </a>
   </div>
 
   <h1
-    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white">
+    class="max-w-[11ch] text-5xl font-bold tracking-tight text-gray-800 sm:text-6xl xl:text-7xl dark:text-white text-balance leading-none">
     {i18n.HERO.GREETING} <span class="animate-wave inline-block origin-[70%_70%]">👋</span>
   </h1>
   
-  <h2 class="mt-2 text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-500 dark:from-yellow-300 dark:to-yellow-500">
+  <h2 class="mt-4 max-w-2xl text-xl sm:text-2xl xl:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 dark:from-amber-200 dark:via-yellow-300 dark:to-orange-300 text-balance">
     {i18n.HERO.ROLE}
   </h2>
 
   <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300 text-pretty">
+    class="mt-6 max-w-2xl text-base sm:text-lg xl:text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300 text-pretty">
     {i18n.HERO.DESCRIPTION_1} <strong
       >{i18n.HERO.DESCRIPTION_STRONG}
     </strong>{i18n.HERO.DESCRIPTION_2}
   </p>
 
+  <ul class="mt-8 grid gap-3 sm:grid-cols-2 2xl:grid-cols-3">
+    {i18n.HERO.HIGHLIGHTS.map((item) => (
+      <li class="rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm text-gray-700 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
+        {item}
+      </li>
+    ))}
+  </ul>
+
+  <div class="mt-8 flex flex-wrap gap-3">
+    <LinkButton href={projectsHref}>
+      {i18n.HERO.PRIMARY_CTA}
+    </LinkButton>
+    <LinkButton href={resumeHref}>
+      {i18n.HERO.SECONDARY_CTA}
+    </LinkButton>
+  </div>
+
   <div class="mt-8">
     <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">{i18n.HERO.CTA}</p>
     <nav class="flex flex-wrap gap-4">
-      <ContactPopup />
+      <ContactPopup i18n={i18n} />
       <SocialPill href="mailto:migue900920@gmail.com">
         <MailIcon class="size-4" />
-        Correo
+        {i18n.HERO.EMAIL_LABEL}
       </SocialPill>
       <SocialPill href="https://www.linkedin.com/in/miguel1990/">
         <LinkedInIcon class="size-4" />
@@ -58,6 +80,16 @@ const { i18n } = Astro.props
 </div>
 
 <style>
+  div :global(a[href^="https://linkedin"]) {
+    max-width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-wave {
+      animation: none;
+    }
+  }
+
   @keyframes wave {
     0% { transform: rotate(0.0deg) }
     10% { transform: rotate(14.0deg) }  

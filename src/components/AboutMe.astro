@@ -26,7 +26,7 @@ const { i18n } = Astro.props
   <!-- Descarga de CV -->
   <div
     class="flex flex-col sm:flex-row gap-2 justify-center md:justify-start mt-2 md:mt-0">
-    <CVDownload lang="es" />
-    <CVDownload lang="en" />
+    <CVDownload lang="es" label={i18n.ABOUT.CV_ES} />
+    <CVDownload lang="en" label={i18n.ABOUT.CV_EN} />
   </div>
 

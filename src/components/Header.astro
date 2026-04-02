@@ -8,6 +8,9 @@ const { i18n, currentLocale } = Astro.props
 
 const routes = {
   EXPERIENCE: currentLocale === 'en' ? '/en/#experiencia' : '/#experiencia',
+  POSITIONING: currentLocale === 'en' ? '/en/#valor' : '/#valor',
+  JOURNEY: currentLocale === 'en' ? '/en/#roadmap' : '/#roadmap',
+  LEARNING: currentLocale === 'en' ? '/en/#aprendizaje' : '/#aprendizaje',
   PROJECTS: currentLocale === 'en' ? '/en/#proyectos' : '/#proyectos',
   ABOUT: currentLocale === 'en' ? '/en/#sobre-mi' : '/#sobre-mi',
 }
@@ -19,9 +22,24 @@ const navItems = [
     url: routes.EXPERIENCE,
   },
   {
+    title: i18n.HEADER.POSITIONING,
+    label: "valor",
+    url: routes.POSITIONING,
+  },
+  {
+    title: i18n.HEADER.JOURNEY,
+    label: "roadmap",
+    url: routes.JOURNEY,
+  },
+  {
     title: i18n.HEADER.PROJECTS,
     label: "proyectos",
     url: routes.PROJECTS,
+  },
+  {
+    title: i18n.HEADER.LEARNING,
+    label: "aprendizaje",
+    url: routes.LEARNING,
   },
   {
     title: i18n.HEADER.ABOUT,
@@ -55,11 +73,11 @@ const navItems = [
     <!-- Controls & Mobile Menu Button -->
     <div class="flex items-center gap-2">
         <div class="flex items-center gap-2 border-l border-gray-300 dark:border-gray-700 pl-4 text-gray-700 dark:text-gray-200">
-          <ThemeToggle />
+          <ThemeToggle i18n={i18n} />
           <LanguageToggle currentLocale={currentLocale} />
         </div>
 
-        <button id="menu-btn" class="md:hidden text-gray-700 dark:text-gray-200 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors" aria-label="Menu">
+        <button id="menu-btn" class="md:hidden text-gray-700 dark:text-gray-200 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors" aria-label={i18n.UI.MENU}>
             <MenuIcon class="size-6" />
         </button>
     </div>
@@ -67,7 +85,7 @@ const navItems = [
 
   <!-- Mobile Menu Overlay -->
   <div id="mobile-menu" class="fixed inset-0 z-[60] bg-white/95 dark:bg-zinc-950/95 backdrop-blur-xl hidden flex-col items-center justify-center gap-8 text-xl opacity-0 transition-opacity duration-300 h-dvh w-screen">
-      <button id="close-menu-btn" class="absolute top-4 right-4 text-gray-700 dark:text-gray-200 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors" aria-label="Cerrar menú">
+      <button id="close-menu-btn" class="absolute top-4 right-4 text-gray-700 dark:text-gray-200 p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-md transition-colors" aria-label={i18n.UI.CLOSE_MENU}>
         <CloseIcon class="size-8" />
       </button>
       

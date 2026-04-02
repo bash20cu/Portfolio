@@ -1,14 +1,16 @@
 ---
 import SunIcon from "./icons/Sun.astro"
 import MoonIcon from "./icons/Moon.astro"
+const { i18n } = Astro.props
 ---
 
 <div class="relative ml-1 mr-1">
   <button
     id="theme-toggle-btn"
     class="appearance-none border-none flex hover:scale-125 transition"
+    aria-label={i18n?.UI?.THEME || "Cambiar tema"}
   >
-    <span class="sr-only">Elige el tema</span>
+    <span class="sr-only">{i18n?.UI?.THEME || "Cambiar tema"}</span>
     <SunIcon id="light" class="theme-toggle-icon size-5 transition-all" />
     <MoonIcon
       id="dark"

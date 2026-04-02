@@ -28,16 +28,16 @@ const { description, title, i18n, currentLocale = "es" } = Astro.props
     <ViewTransitions />
   </head>
 
-  <body class="relative text-black dark:text-white">
+  <body class="relative text-black dark:text-white overflow-x-hidden">
     <div
-      class="absolute top-0 bottom-0 z-[-2] min-h-screen w-full bg-gray-50 dark:bg-gray-950
-      bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(217,216,255,0.5),rgba(255,255,255,0.9))]
-      dark:bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"
+      class="absolute inset-0 z-[-2] min-h-screen w-full bg-[#f5f1e8] dark:bg-[#0a0d18]
+      [background-image:radial-gradient(circle_at_top,rgba(251,191,36,0.12),transparent_28%),radial-gradient(circle_at_80%_20%,rgba(59,130,246,0.12),transparent_22%),linear-gradient(to_bottom,rgba(255,255,255,0.4),transparent_40%)]
+      dark:[background-image:radial-gradient(circle_at_top,rgba(251,191,36,0.16),transparent_26%),radial-gradient(circle_at_80%_20%,rgba(56,189,248,0.14),transparent_20%),linear-gradient(to_bottom,rgba(15,23,42,0.2),transparent_35%)]"
     >
     </div>
     <Header i18n={i18n} currentLocale={currentLocale} />
     <slot />
-    <Footer />
+    <Footer i18n={i18n} currentLocale={currentLocale} />
     <style is:global>
       :root {
         color-scheme: light dark;
@@ -55,6 +55,10 @@ const { description, title, i18n, currentLocale = "es" } = Astro.props
         min-height: 100vh;
         overscroll-behavior: none;
         padding-top: 4rem; /* Header safe area */
+      }
+
+      * {
+        min-width: 0;
       }
 
       @media (prefers-reduced-motion: reduce) {

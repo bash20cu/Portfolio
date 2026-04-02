@@ -2,6 +2,7 @@
 /** Componente Popup de contacto */
 const { formAction = "https://formspree.io/f/meqnrapv" } = Astro.props;
 import Badge from "../components/Badge.astro";
+const { i18n } = Astro.props;
 ---
 
 <!-- Botón para abrir el popup -->
@@ -9,7 +10,7 @@ import Badge from "../components/Badge.astro";
   <button
     class="cursor-pointer transition md:hover:scale-105 max-w-fit text-lg"
     onclick="document.getElementById('contactDialog')?.showModal()">
-    <Badge >✉️ Contáctame </Badge>
+    <Badge >✉️ {i18n?.CONTACT?.OPEN || "Contáctame"} </Badge>
   </button>
 
 
@@ -23,13 +24,13 @@ import Badge from "../components/Badge.astro";
     <!-- Botón cerrar -->
     <button
       class="self-end text-zinc-500 hover:text-zinc-700 dark:text-zinc-300 dark:hover:text-white cursor-pointer"
-      aria-label="Cerrar"
+      aria-label={i18n?.CONTACT?.CLOSE || "Cerrar"}
       onclick="document.getElementById('contactDialog')?.close()">✕</button
     >
 
-    <h2 class="text-lg font-bold">Hablemos</h2>
+    <h2 class="text-lg font-bold">{i18n?.CONTACT?.TITLE || "Hablemos"}</h2>
     <p class="text-sm text-zinc-600 dark:text-zinc-300">
-      Te responderé lo antes posible.
+      {i18n?.CONTACT?.DESCRIPTION || "Te responderé lo antes posible."}
     </p>
 
     <!-- Formulario Formspree -->
@@ -50,7 +51,8 @@ import Badge from "../components/Badge.astro";
         type="email"
         name="email"
         required
-        placeholder="Tu correo"
+        placeholder={i18n?.CONTACT?.EMAIL_PLACEHOLDER || "Tu correo…"}
+        aria-label={i18n?.CONTACT?.EMAIL_PLACEHOLDER || "Tu correo"}
         class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-3 py-2"
       />
 
@@ -58,7 +60,8 @@ import Badge from "../components/Badge.astro";
         name="message"
         required
         rows="4"
-        placeholder="Tu mensaje"
+        placeholder={i18n?.CONTACT?.MESSAGE_PLACEHOLDER || "Tu mensaje…"}
+        aria-label={i18n?.CONTACT?.MESSAGE_PLACEHOLDER || "Tu mensaje"}
         class="w-full rounded-lg border border-zinc-300 dark:border-zinc-700 bg-white dark:bg-zinc-950 px-3 py-2"
       ></textarea>
 
@@ -67,26 +70,25 @@ import Badge from "../components/Badge.astro";
         name="_subject"
         value="Nuevo mensaje desde el Portfolio de Miguel"
       />
-      <input type="hidden" name="_next" value="/gracias/" />
 
       <div class="flex gap-2 mt-2">
         <button
           type="submit"
           class="inline-flex items-center gap-2 px-4 py-2 font-medium  cursor-pointer transition md:hover:scale-105"
-          ><Badge>Enviar</Badge></button
+          ><Badge>{i18n?.CONTACT?.SUBMIT || "Enviar mensaje"}</Badge></button
         >
 
         <button
           type="button"
           class="inline-flex items-center gap-2 px-4 py-2 font-medium  flex-1 cursor-pointer transition md:hover:scale-105"
           onclick="document.getElementById('contactDialog')?.close()"
-          ><Badge>Cancelar</Badge></button
+          ><Badge>{i18n?.CONTACT?.CANCEL || "Cancelar"}</Badge></button
         >
       </div>
     </form>
 
     <p class="text-xs text-zinc-500 dark:text-zinc-400 mt-2">
-      También puedes escribirme a
+      {i18n?.CONTACT?.DIRECT || "También puedes escribirme a"}
       <a class="underline cursor-pointer transition md:hover:scale-105" href="mailto:migue900920@gmail.com"
         >migue900920@gmail.com</a
       >.

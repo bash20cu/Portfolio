@@ -5,8 +5,11 @@ import AboutMe from "../components/AboutMe.astro"
 import Briefcase from "../components/icons/Briefcase.astro"
 import CodeIcon from "../components/icons/Code.astro"
 import Experience from "../components/Experience.astro"
+import Journey from "../components/Journey.astro"
+import LearningMap from "../components/LearningMap.astro"
 import ProfileCheck from "../components/icons/ProfileCheck.astro"
 import Projects from "../components/Projects.astro"
+import Positioning from "../components/Positioning.astro"
 import SectionContainer from "../components/SectionContainer.astro"
 import Hero from "../components/Hero.astro"
 import TitleSection from "../components/TitleSection.astro"
@@ -27,41 +30,61 @@ const experience = getExperience({ currentLocale })
   i18n={i18n}
   currentLocale={currentLocale}
 >
-  <main class="px-4 py-8 md:py-16 max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
-      
-      <!-- Hero Section -->
-      <SectionContainer class="py-0 md:py-0 w-full h-full flex flex-col justify-center md:max-w-none">
-        <Hero i18n={i18n} />
-      </SectionContainer>
+  <main class="px-4 py-6 md:px-6 md:py-10 xl:py-14 max-w-7xl mx-auto">
+    <SectionContainer class="py-0 w-full md:max-w-none">
+      <Hero i18n={i18n} currentLocale={currentLocale} />
+    </SectionContainer>
 
-      <!-- Experience Section -->
-      <SectionContainer id="experiencia" class="py-0 md:py-0 w-full md:max-w-none">
-        <TitleSection>
-          <Briefcase class="size-8" />
-          {i18n.EXPERIENCE.TITLE}
-        </TitleSection>
-        <Experience experience={experience} />
-      </SectionContainer>
+    <SectionContainer id="valor" class="mt-18 py-0 w-full md:max-w-none">
+      <TitleSection>{i18n.POSITIONING.TITLE}</TitleSection>
+      <p class="mb-8 max-w-3xl text-gray-700 dark:text-gray-300 text-pretty">{i18n.POSITIONING.INTRO}</p>
+      <Positioning i18n={i18n} />
+    </SectionContainer>
 
-      <!-- Projects Section -->
-      <SectionContainer id="proyectos" class="py-0 md:py-0 w-full md:max-w-none">
-        <TitleSection>
+    <SectionContainer id="roadmap" class="mt-18 py-0 w-full md:max-w-none">
+      <TitleSection>{i18n.JOURNEY.TITLE}</TitleSection>
+      <p class="mb-8 max-w-3xl text-gray-700 dark:text-gray-300 text-pretty">{i18n.JOURNEY.INTRO}</p>
+      <Journey i18n={i18n} />
+    </SectionContainer>
+
+    <SectionContainer id="proyectos" class="mt-18 py-0 w-full md:max-w-none" wide={true}>
+      <div class="mb-6 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+        <TitleSection className="mb-0">
           <CodeIcon class="size-7" />
           {i18n.PROJECTS.TITLE}
         </TitleSection>
-        <Projects projects={projects} i18n={i18n} />
-      </SectionContainer>
+        <div class="flex shrink-0 gap-2 self-start sm:self-auto">
+          <button id="projects-header-prev" class="rounded-full border border-slate-200 bg-white p-2 text-slate-800 shadow-sm transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" aria-label={i18n.UI.PREVIOUS_PROJECT}>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
+          </button>
+          <button id="projects-header-next" class="rounded-full border border-slate-200 bg-white p-2 text-slate-800 shadow-sm transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" aria-label={i18n.UI.NEXT_PROJECT}>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+          </button>
+        </div>
+      </div>
+      <Projects projects={projects} i18n={i18n} />
+    </SectionContainer>
 
-      <!-- About Me Section -->
-      <SectionContainer id="sobre-mi" class="py-0 md:py-0 w-full md:max-w-none">
-        <TitleSection>
-          <ProfileCheck class="size-8" />
-          {i18n.ABOUT.TITLE}
-        </TitleSection>
-        <AboutMe i18n={i18n} />
-      </SectionContainer>
+    <SectionContainer id="experiencia" class="mt-18 py-0 w-full md:max-w-none">
+      <TitleSection>
+        <Briefcase class="size-8" />
+        {i18n.EXPERIENCE.TITLE}
+      </TitleSection>
+      <Experience experience={experience} i18n={i18n} />
+    </SectionContainer>
 
-    </div>
+    <SectionContainer id="aprendizaje" class="mt-18 py-0 w-full md:max-w-none">
+      <TitleSection>{i18n.LEARNING.TITLE}</TitleSection>
+      <p class="mb-8 max-w-3xl text-gray-700 dark:text-gray-300 text-pretty">{i18n.LEARNING.INTRO}</p>
+      <LearningMap i18n={i18n} />
+    </SectionContainer>
+
+    <SectionContainer id="sobre-mi" class="mt-18 py-0 w-full md:max-w-none">
+      <TitleSection>
+        <ProfileCheck class="size-8" />
+        {i18n.ABOUT.TITLE}
+      </TitleSection>
+      <AboutMe i18n={i18n} />
+    </SectionContainer>
   </main>
 </Layout>
