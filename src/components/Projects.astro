@@ -2,112 +2,310 @@
 import GitHub from "./icons/GitHub.astro";
 import Link from "./icons/Link.astro";
 import LinkButton from "./LinkButton.astro";
+import ArchitecturePreview from "./ArchitecturePreview.astro";
 
-const { projects, i18n } = Astro.props
+const { projects, i18n } = Astro.props;
+
+const featuredProjects = projects.filter((project) => project.section === "featured");
+const supportingProjects = projects.filter(
+  (project) => project.section === "private" || project.section === "academic"
+);
+
+const sections = [
+  {
+    key: "featured",
+    title: i18n?.PROJECTS?.FEATURED_TITLE || "Featured work",
+    intro: i18n?.PROJECTS?.FEATURED_INTRO || "Projects that best represent my current positioning.",
+    projects: featuredProjects,
+  },
+  {
+    key: "supporting",
+    title: i18n?.PROJECTS?.SUPPORTING_TITLE || "Private systems and academic work",
+    intro:
+      i18n?.PROJECTS?.SUPPORTING_INTRO ||
+      "A mix of private systems, internal tooling, and academic builds that strengthen my architectural story.",
+    projects: supportingProjects,
+  },
+];
 ---
 
-<div class="embla relative" id="projects-carousel">
-  <div class="embla__container">
-    {projects.map(({ title, description, github, link, topics, languages, image, disclaimer, role, company, period }) => (
-      <div class="embla__slide">
-        <article class="flex flex-col gap-4 pb-2"> 
-          
-          {/* Top Section: Image + Header Info */}
-          <div class="flex flex-col md:flex-row gap-4 md:items-start">
-            
-            {/* Image (Smaller width now) */}
-            <div class="w-full md:w-[45%] shrink-0">
-              <div class="relative flex flex-col items-center col-span-6 row-span-5 gap-8 transition duration-500 ease-in-out transform shadow-xl overflow-clip rounded-xl sm:rounded-xl lg:border lg:border-gray-800 lg:hover:border-gray-700 lg:hover:bg-gray-800/50">
-                <img 
-                  alt={title} 
-                  class="object-cover object-top w-full h-40 sm:h-full md:scale-110 md:group-hover:scale-105" 
-                  loading="lazy" 
-                  src={image} 
-                />
-              </div>
-            </div>
+<div class="space-y-16">
+  {sections.map((section) => {
+    const sectionProjects = section.projects;
 
-            {/* Header Info (Title, Tags, Meta) */}
-            <div class="w-full md:w-[55%]">
-              <h3 class="text-xl md:text-2xl font-bold text-gray-800 dark:text-gray-100">{title}</h3>
+    if (sectionProjects.length === 0) return null;
 
-              {/* Company / Role */}
-              {company && <div class="text-xs md:text-sm text-gray-500 mt-1">{company} {period ? `• ${period}` : ""}</div>}
-              {role && <div class="text-xs md:text-sm text-gray-500">{role}</div>}
+    return (
+      <section class="space-y-6">
+        <div class="max-w-3xl">
+          <p class="text-xs font-semibold uppercase tracking-[0.28em] text-sky-500 dark:text-sky-300">
+            {section.title}
+          </p>
+          <p class="mt-3 indent-6 text-gray-700 [text-align:justify] text-pretty dark:text-gray-300">
+            {section.intro}
+          </p>
+        </div>
 
-              {/* Disclaimer */}
-              {disclaimer && <div class="mt-1 text-xs md:text-sm text-yellow-600 dark:text-yellow-500 text-pretty">{disclaimer}</div>}
+        <div class="space-y-8">
+          {section.key === "featured" ? (
+            <div class="embla relative" id="projects-carousel">
+              <div class="embla__container">
+                {sectionProjects.map((project) => (
+                  <div class="embla__slide">
+                    <article class="group relative overflow-hidden rounded-[1.45rem] border border-slate-200/80 bg-white/85 shadow-[0_24px_80px_-48px_rgba(15,23,42,0.45)] backdrop-blur dark:border-white/10 dark:bg-white/5">
+                      <div class="min-w-0 px-4 py-3.5 sm:px-5 sm:py-4.5 lg:px-6">
+                        <div class="flex flex-wrap items-center gap-2.5 text-xs sm:text-sm">
+                          <span class="rounded-full border border-sky-400/30 bg-sky-500/10 px-2.5 py-1 font-semibold text-sky-700 dark:text-sky-300">
+                            {project.type}
+                          </span>
+                          <span class="hidden rounded-full border border-slate-300/80 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:border-white/10 dark:bg-white/10 dark:text-slate-300 lg:inline-flex">
+                            {i18n?.PROJECTS?.VISUAL_HINT || "Hover to preview visual"}
+                          </span>
+                          {(project.company || project.period) && (
+                            <span class="text-slate-500 dark:text-slate-400">
+                              {[project.company, project.period].filter(Boolean).join(" · ")}
+                            </span>
+                          )}
+                        </div>
 
-              {/* Topics */}
-              <ul class="flex flex-row mt-2 gap-x-2 flex-wrap mb-1">
-                {topics.map(tag => (
-                  <li class="mb-1">
-                    <span class="flex gap-x-2 rounded-full text-[10px] md:text-xs bg-gray-700 text-white py-1 px-2">
-                      {tag}
-                    </span>
-                  </li>
+                        <h3 class="mt-2.5 text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-100 sm:text-xl">
+                          {project.title}
+                        </h3>
+
+                        {project.role && (
+                          <p class="mt-1.5 text-xs font-medium text-slate-500 dark:text-slate-400 sm:text-sm">{project.role}</p>
+                        )}
+
+                        <p class="mt-2.5 max-w-4xl text-sm font-medium leading-6 text-slate-800 dark:text-slate-100 sm:text-[15px] sm:leading-6">
+                          {project.summary}
+                        </p>
+
+                        <p class="mt-2.5 max-w-4xl indent-6 text-pretty text-sm leading-6 text-slate-700 [text-align:justify] dark:text-slate-300 sm:text-[14px] sm:leading-6">
+                          {project.description}
+                        </p>
+
+                        <ArchitecturePreview architecture={project.architecture} />
+
+                        <div class="mt-4">
+                          <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                            {i18n?.PROJECTS?.IMPACT || "Impact"}
+                          </p>
+                          <ul class="mt-2 grid gap-2 text-xs leading-5 text-slate-700 dark:text-slate-300 sm:text-sm sm:leading-5 xl:grid-cols-2">
+                            {project.impact.map((item) => (
+                              <li class="rounded-[0.95rem] border border-slate-200/80 bg-slate-50/80 px-3 py-2.5 dark:border-white/10 dark:bg-white/5">
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <ul class="mt-4 flex flex-wrap gap-2">
+                          {project.topics.map((tag) => (
+                            <li>
+                              <span class="rounded-full border border-slate-300/80 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200">
+                                {tag}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+
+                        {project.disclaimer && (
+                          <p class="mt-3 rounded-[0.95rem] border border-amber-400/30 bg-amber-500/10 px-3 py-2 text-xs leading-5 text-amber-800 dark:text-amber-200 sm:text-sm sm:leading-5">
+                            {project.disclaimer}
+                          </p>
+                        )}
+
+                        {(project.github || project.link) && (
+                          <footer class="mt-4 flex flex-wrap gap-3">
+                            {project.github && (
+                              <LinkButton href={project.github}>
+                                <GitHub class="size-5" />
+                                {i18n?.PROJECTS?.CODE || "Code"}
+                              </LinkButton>
+                            )}
+                            {project.link && (
+                              <LinkButton href={project.link}>
+                                <Link class="size-4" />
+                                {i18n?.PROJECTS?.PREVIEW || "Preview"}
+                              </LinkButton>
+                            )}
+                          </footer>
+                        )}
+                      </div>
+
+                      <div class="pointer-events-none absolute right-4 top-4 hidden w-[176px] translate-y-2 opacity-0 transition-all duration-200 ease-out group-hover:translate-y-0 group-hover:opacity-100 2xl:block">
+                        <div class="overflow-hidden rounded-[1rem] border border-white/10 bg-slate-950/95 p-2 shadow-2xl">
+                          <div class="flex aspect-[16/10] items-center justify-center overflow-hidden rounded-[0.75rem] border border-white/10 bg-slate-900/80 p-2">
+                            <img
+                              alt={project.title}
+                              width="1200"
+                              height="760"
+                              class="max-h-full w-auto max-w-full object-contain object-center opacity-95"
+                              loading="lazy"
+                              src={project.image}
+                            />
+                          </div>
+                        </div>
+                      </div>
+                    </article>
+                  </div>
                 ))}
-              </ul>
-              
-              {/* Languages */}
-              {languages && languages.length > 0 && (
-                <div class="mt-1 text-xs md:text-sm text-gray-600 dark:text-gray-400">
-                  {languages.map(lang => (
-                    <span class="mr-3">
-                      <strong>{lang.name}</strong> {lang.percent}
-                    </span>
-                  ))}
-                </div>
-              )}
+              </div>
+
+              <div class="mt-4 flex justify-end gap-2">
+                <button id="projects-header-prev" class="rounded-full border border-slate-200 bg-white p-2 text-slate-800 shadow-sm transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" aria-label={i18n.UI.PREVIOUS_PROJECT}>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
+                </button>
+                <button id="projects-header-next" class="rounded-full border border-slate-200 bg-white p-2 text-slate-800 shadow-sm transition-colors hover:bg-slate-100 dark:border-slate-700 dark:bg-slate-900 dark:text-slate-200 dark:hover:bg-slate-800" aria-label={i18n.UI.NEXT_PROJECT}>
+                  <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
+                </button>
+              </div>
+
             </div>
-          </div>
+          ) : (
+            <div class="space-y-4" data-folder-tabs>
+              <div class="flex flex-wrap items-end gap-2 border-b border-slate-200/80 pb-1 dark:border-white/10">
+                {sectionProjects.map((project, index) => (
+                  <button
+                    type="button"
+                    class={`folder-tab rounded-t-[1rem] border border-b-0 px-4 py-2 text-left transition-colors ${
+                      index === 0
+                        ? "border-slate-300 bg-white text-slate-900 dark:border-white/15 dark:bg-slate-950/90 dark:text-slate-100"
+                        : "border-slate-200/80 bg-slate-100/70 text-slate-500 hover:bg-white/90 dark:border-white/10 dark:bg-white/[0.03] dark:text-slate-400 dark:hover:bg-white/[0.06]"
+                    }`}
+                    aria-selected={index === 0 ? "true" : "false"}
+                    data-folder-tab
+                    data-folder-target={`folder-panel-${section.key}-${index}`}
+                  >
+                    <span class="block text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-600 dark:text-sky-300">
+                      {project.type}
+                    </span>
+                    <span class="mt-1 block text-sm font-medium">{project.title}</span>
+                  </button>
+                ))}
+              </div>
 
-          {/* Bottom Section: Description + Links */}
-          <div class="w-full">
-            <div class="text-gray-700 dark:text-gray-400 text-pretty">{description}</div>
+              {sectionProjects.map((project, index) => (
+                <article
+                  id={`folder-panel-${section.key}-${index}`}
+                  class={`folder-panel relative overflow-hidden rounded-[1.6rem] border border-slate-200/80 bg-white/85 shadow-[0_24px_80px_-48px_rgba(15,23,42,0.45)] backdrop-blur dark:border-white/10 dark:bg-white/5 ${
+                    index === 0 ? "" : "hidden"
+                  }`}
+                  data-folder-panel
+                >
+                  <div class="absolute inset-y-0 left-0 w-px bg-gradient-to-b from-transparent via-sky-400/40 to-transparent"></div>
+                  <div class="grid gap-0 xl:grid-cols-[18rem_minmax(0,1fr)]">
+                    <aside class="border-b border-slate-200/70 bg-slate-50/65 px-5 py-5 dark:border-white/10 dark:bg-white/[0.03] xl:border-b-0 xl:border-r">
+                      <p class="text-[11px] font-semibold uppercase tracking-[0.24em] text-sky-600 dark:text-sky-300">
+                        {project.type}
+                      </p>
+                      <h3 class="mt-4 text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-100">
+                        {project.title}
+                      </h3>
+                      {project.role && (
+                        <p class="mt-2 text-sm font-medium text-slate-500 dark:text-slate-400">{project.role}</p>
+                      )}
+                      {(project.company || project.period) && (
+                        <p class="mt-4 text-xs uppercase tracking-[0.18em] text-slate-500 dark:text-slate-400">
+                          {[project.company, project.period].filter(Boolean).join(" · ")}
+                        </p>
+                      )}
 
-            {/* Links */}
-            <footer class="flex items-end justify-start mt-4 gap-x-4">
-              {github && (
-                <LinkButton href={github}>
-                  <GitHub class="size-6" />
-                  {i18n?.PROJECTS?.CODE || "Code"}
-                </LinkButton>
-              )}
-              {link && (
-                <LinkButton href={link}>
-                  <Link class="size-4" />
-                  {i18n?.PROJECTS?.PREVIEW || "Preview"}
-                </LinkButton>
-              )}
-            </footer>
-          </div>
+                      <div class="mt-6 rounded-[1.1rem] border border-slate-200/80 bg-white/80 px-4 py-3 dark:border-white/10 dark:bg-white/[0.04]">
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                          Dossier
+                        </p>
+                        <p class="mt-2 indent-6 text-sm leading-6 text-slate-700 [text-align:justify] dark:text-slate-300">
+                          {project.summary}
+                        </p>
+                      </div>
+                    </aside>
 
-        </article>
-      </div>
-    ))}
-  </div>
+                    <div class="px-5 py-5 sm:px-6">
+                      <div class="flex flex-wrap items-center justify-between gap-3">
+                        <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                          Architecture notes
+                        </p>
+                        <span class="rounded-full border border-slate-300/80 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-600 dark:border-white/10 dark:bg-white/10 dark:text-slate-300">
+                          Click tabs to inspect
+                        </span>
+                      </div>
 
-  {/* Navigation Buttons */}
-  {/* Navigation Buttons (Moved below to avoid overlap) */}
-  <div class="flex justify-end gap-2 mt-4 px-4">
-    <button class="embla__prev bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Anterior">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
-    </button>
-    <button class="embla__next bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Siguiente">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
-    </button>
-  </div>
+                      <p class="mt-3 max-w-4xl indent-6 text-pretty text-sm leading-6 text-slate-700 [text-align:justify] dark:text-slate-300 sm:text-[14px] sm:leading-6">
+                        {project.description}
+                      </p>
+
+                      <ArchitecturePreview architecture={project.architecture} />
+
+                      <div class="mt-4 grid gap-4 2xl:grid-cols-[minmax(0,1fr)_auto] 2xl:items-start">
+                        <div>
+                          <p class="text-[11px] font-semibold uppercase tracking-[0.2em] text-slate-500 dark:text-slate-400">
+                            {i18n?.PROJECTS?.IMPACT || "Impact"}
+                          </p>
+                          <ul class="mt-2 grid gap-2 text-xs leading-5 text-slate-700 dark:text-slate-300 sm:text-sm sm:leading-5">
+                            {project.impact.map((item) => (
+                              <li class="rounded-[0.95rem] border border-slate-200/80 bg-slate-50/80 px-3 py-2.5 dark:border-white/10 dark:bg-white/5">
+                                {item}
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+
+                        <ul class="flex flex-wrap gap-2 2xl:max-w-[17rem]">
+                          {project.topics.map((tag) => (
+                            <li>
+                              <span class="rounded-full border border-slate-300/80 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 dark:border-white/10 dark:bg-white/10 dark:text-slate-200">
+                                {tag}
+                              </span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+
+                      {project.disclaimer && (
+                        <p class="mt-4 rounded-[0.95rem] border border-amber-400/30 bg-amber-500/10 px-3 py-2 text-xs leading-5 text-amber-800 dark:text-amber-200 sm:text-sm sm:leading-5">
+                          {project.disclaimer}
+                        </p>
+                      )}
+
+                      {(project.github || project.link) && (
+                        <footer class="mt-4 flex flex-wrap gap-3">
+                          {project.github && (
+                            <LinkButton href={project.github}>
+                              <GitHub class="size-5" />
+                              {i18n?.PROJECTS?.CODE || "Code"}
+                            </LinkButton>
+                          )}
+                          {project.link && (
+                            <LinkButton href={project.link}>
+                              <Link class="size-4" />
+                              {i18n?.PROJECTS?.PREVIEW || "Preview"}
+                            </LinkButton>
+                          )}
+                        </footer>
+                      )}
+                    </div>
+                  </div>
+                </article>
+              ))}
+            </div>
+          )}
+        </div>
+      </section>
+    );
+  })}
 </div>
 
 <style>
   .embla {
     overflow: hidden;
   }
+
   .embla__container {
     display: flex;
-    gap: 2rem; /* Espaciado entre slides */
+    gap: 1.5rem;
   }
+
   .embla__slide {
     flex: 0 0 100%;
     min-width: 0;
@@ -115,27 +313,53 @@ const { projects, i18n } = Astro.props
 </style>
 
 <script>
-  import EmblaCarousel from 'embla-carousel'
-  import Autoplay from 'embla-carousel-autoplay'
+  import EmblaCarousel from "embla-carousel";
+  import Autoplay from "embla-carousel-autoplay";
 
-  const initCarousel = () => {
-    const emblaNode = document.querySelector('#projects-carousel') as HTMLElement
-    const prevBtn = emblaNode?.querySelector('.embla__prev') as HTMLButtonElement
-    const nextBtn = emblaNode?.querySelector('.embla__next') as HTMLButtonElement
+  const initProjectsCarousel = () => {
+    const emblaNode = document.querySelector("#projects-carousel");
+    const prevBtn = document.querySelector("#projects-header-prev");
+    const nextBtn = document.querySelector("#projects-header-next");
 
     if (emblaNode) {
       const emblaApi = EmblaCarousel(emblaNode, { loop: true }, [
-        Autoplay({ delay: 8000, stopOnInteraction: true })
-      ])
+        Autoplay({ delay: 600000, stopOnInteraction: true }),
+      ]);
 
-      // Clean up previous listeners if any (though usually simpler to just add new ones on refresh)
-      // A more robust way is to clone node or track listeners. 
-      // For Astro Page Load, simple addEventListener is fine since DOM is fresh.
-      
-      if (prevBtn) prevBtn.onclick = () => emblaApi.scrollPrev()
-      if (nextBtn) nextBtn.onclick = () => emblaApi.scrollNext()
+      if (prevBtn) prevBtn.onclick = () => emblaApi.scrollPrev();
+      if (nextBtn) nextBtn.onclick = () => emblaApi.scrollNext();
     }
-  }
+  };
 
-  document.addEventListener('astro:page-load', initCarousel)
+  document.addEventListener("astro:page-load", initProjectsCarousel);
+
+  const initFolderTabs = () => {
+    document.querySelectorAll("[data-folder-tabs]").forEach((folder) => {
+      const tabs = folder.querySelectorAll("[data-folder-tab]");
+      const panels = folder.querySelectorAll("[data-folder-panel]");
+
+      tabs.forEach((tab) => {
+        tab.addEventListener("click", () => {
+          const target = tab.getAttribute("data-folder-target");
+
+          tabs.forEach((item) => {
+            item.setAttribute("aria-selected", "false");
+            item.classList.remove("border-slate-300", "bg-white", "text-slate-900", "dark:border-white/15", "dark:bg-slate-950/90", "dark:text-slate-100");
+            item.classList.add("border-slate-200/80", "bg-slate-100/70", "text-slate-500", "dark:border-white/10", "dark:bg-white/[0.03]", "dark:text-slate-400");
+          });
+
+          panels.forEach((panel) => panel.classList.add("hidden"));
+
+          tab.setAttribute("aria-selected", "true");
+          tab.classList.remove("border-slate-200/80", "bg-slate-100/70", "text-slate-500", "dark:border-white/10", "dark:bg-white/[0.03]", "dark:text-slate-400");
+          tab.classList.add("border-slate-300", "bg-white", "text-slate-900", "dark:border-white/15", "dark:bg-slate-950/90", "dark:text-slate-100");
+
+          const activePanel = folder.querySelector(`#${target}`);
+          activePanel?.classList.remove("hidden");
+        });
+      });
+    });
+  };
+
+  document.addEventListener("astro:page-load", initFolderTabs);
 </script>

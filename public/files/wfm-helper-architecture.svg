@@ -1,0 +1,52 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="120" y1="60" x2="1080" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="card" x1="180" y1="180" x2="920" y2="640" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172554"/>
+      <stop offset="1" stop-color="#1F2937"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="1" stop-color="#A3E635"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="36" fill="url(#bg)"/>
+  <circle cx="1030" cy="140" r="150" fill="#22D3EE" fill-opacity="0.08"/>
+  <circle cx="170" cy="640" r="180" fill="#A3E635" fill-opacity="0.06"/>
+  <text x="84" y="104" fill="#E5EEF8" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">WFM Helper</text>
+  <text x="84" y="144" fill="#7DD3FC" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Private internal analytics tool</text>
+  <text x="84" y="196" fill="#D1D5DB" font-family="Segoe UI, Arial, sans-serif" font-size="20">Raw operational files become validated, structured datasets ready for Power BI and faster decision-making.</text>
+
+  <rect x="84" y="250" width="220" height="140" rx="28" fill="url(#card)" stroke="#334155"/>
+  <text x="114" y="302" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Inputs</text>
+  <text x="114" y="340" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Raw reports</text>
+  <text x="114" y="370" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Manual exports</text>
+
+  <rect x="348" y="250" width="230" height="140" rx="28" fill="url(#card)" stroke="#334155"/>
+  <text x="378" y="302" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Extraction</text>
+  <text x="378" y="340" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Orchestrated loaders</text>
+  <text x="378" y="370" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Format-aware parsing</text>
+
+  <rect x="622" y="250" width="250" height="140" rx="28" fill="url(#card)" stroke="#334155"/>
+  <text x="652" y="302" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Normalization</text>
+  <text x="652" y="340" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Validation rules</text>
+  <text x="652" y="370" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Consistent metric models</text>
+
+  <rect x="916" y="250" width="200" height="140" rx="28" fill="url(#card)" stroke="#334155"/>
+  <text x="946" y="302" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Output</text>
+  <text x="946" y="340" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Structured tables</text>
+  <text x="946" y="370" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Power BI ready</text>
+
+  <path d="M304 320H348" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M578 320H622" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
+  <path d="M872 320H916" stroke="url(#accent)" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="84" y="468" width="1032" height="184" rx="30" fill="#0F172A" stroke="#334155"/>
+  <text x="118" y="522" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">What this system improved</text>
+  <text x="118" y="566" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Reduced manual cleanup across recurring WFM workflows</text>
+  <text x="118" y="600" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Created a cleaner path from messy source files to analytics consumption</text>
+  <text x="118" y="634" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Supported more reliable reporting, validation, and operational reviews</text>
+</svg>

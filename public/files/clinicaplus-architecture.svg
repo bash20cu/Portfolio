@@ -1,0 +1,43 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg5" x1="120" y1="90" x2="1080" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1F2937"/>
+      <stop offset="1" stop-color="#0B1120"/>
+    </linearGradient>
+    <linearGradient id="card5" x1="140" y1="200" x2="980" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F766E"/>
+      <stop offset="1" stop-color="#1E293B"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="36" fill="url(#bg5)"/>
+  <text x="84" y="104" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">ClinicaPlus</text>
+  <text x="84" y="144" fill="#5EEAD4" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Academic full-stack system design</text>
+  <text x="84" y="194" fill="#D1D5DB" font-family="Segoe UI, Arial, sans-serif" font-size="20">A university project documented as a monolithic SSR architecture to keep delivery, database design, and explanation aligned.</text>
+
+  <rect x="84" y="262" width="240" height="140" rx="28" fill="url(#card5)" stroke="#0F766E"/>
+  <text x="114" y="312" fill="#F0FDFA" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Presentation</text>
+  <text x="114" y="350" fill="#CCFBF1" font-family="Segoe UI, Arial, sans-serif" font-size="18">SSR pages</text>
+  <text x="114" y="380" fill="#CCFBF1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Role-based views</text>
+
+  <rect x="372" y="262" width="240" height="140" rx="28" fill="url(#card5)" stroke="#0F766E"/>
+  <text x="402" y="312" fill="#F0FDFA" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Application</text>
+  <text x="402" y="350" fill="#CCFBF1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Validation</text>
+  <text x="402" y="380" fill="#CCFBF1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Use-case coordination</text>
+
+  <rect x="660" y="262" width="240" height="140" rx="28" fill="url(#card5)" stroke="#0F766E"/>
+  <text x="690" y="312" fill="#F0FDFA" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Data</text>
+  <text x="690" y="350" fill="#CCFBF1" font-family="Segoe UI, Arial, sans-serif" font-size="18">PostgreSQL</text>
+  <text x="690" y="380" fill="#CCFBF1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Relational model</text>
+
+  <rect x="948" y="262" width="168" height="140" rx="28" fill="url(#card5)" stroke="#0F766E"/>
+  <text x="978" y="312" fill="#F0FDFA" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Deploy</text>
+  <text x="978" y="350" fill="#CCFBF1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Vercel</text>
+
+  <path d="M324 332H372" stroke="#2DD4BF" stroke-width="8" stroke-linecap="round"/>
+  <path d="M612 332H660" stroke="#2DD4BF" stroke-width="8" stroke-linecap="round"/>
+  <path d="M900 332H948" stroke="#2DD4BF" stroke-width="8" stroke-linecap="round"/>
+
+  <rect x="196" y="476" width="808" height="156" rx="30" fill="#0B1220" stroke="#334155"/>
+  <text x="228" y="530" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Academic value</text>
+  <text x="228" y="572" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Shows architectural thinking, database modeling, and a full-stack delivery strategy that is easy to explain and defend.</text>
+</svg>

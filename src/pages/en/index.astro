@@ -5,8 +5,11 @@ import AboutMe from "../../components/AboutMe.astro"
 import Briefcase from "../../components/icons/Briefcase.astro"
 import CodeIcon from "../../components/icons/Code.astro"
 import Experience from "../../components/Experience.astro"
+import Journey from "../../components/Journey.astro"
+import LearningMap from "../../components/LearningMap.astro"
 import ProfileCheck from "../../components/icons/ProfileCheck.astro"
 import Projects from "../../components/Projects.astro"
+import Positioning from "../../components/Positioning.astro"
 import SectionContainer from "../../components/SectionContainer.astro"
 import Hero from "../../components/Hero.astro"
 import TitleSection from "../../components/TitleSection.astro"
@@ -27,41 +30,51 @@ const experience = getExperience({ currentLocale })
   i18n={i18n}
   currentLocale={currentLocale}
 >
-  <main class="px-4 py-8 md:py-16 max-w-7xl mx-auto">
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-24 items-start">
-      
-      <!-- Hero Section -->
-      <SectionContainer class="py-0 md:py-0 w-full h-full flex flex-col justify-center md:max-w-none">
-        <Hero i18n={i18n} />
-      </SectionContainer>
+  <main class="mx-auto max-w-[min(100rem,calc(100vw-1.5rem))] px-4 py-6 md:px-6 md:py-10 xl:px-8 xl:py-14 2xl:px-10">
+    <SectionContainer wide={true} class="py-0 w-full lg:!max-w-[min(94rem,calc(100vw-3rem))] lg:min-h-[calc(100svh-4rem)] lg:flex lg:items-center">
+      <Hero i18n={i18n} currentLocale={currentLocale} />
+    </SectionContainer>
 
-      <!-- Experience Section -->
-      <SectionContainer id="experiencia" class="py-0 md:py-0 w-full md:max-w-none">
-        <TitleSection>
-          <Briefcase class="size-8" />
-          {i18n.EXPERIENCE.TITLE}
-        </TitleSection>
-        <Experience experience={experience} />
-      </SectionContainer>
+    <SectionContainer wide={true} id="valor" class="mt-18 py-0 w-full">
+      <TitleSection>{i18n.POSITIONING.TITLE}</TitleSection>
+      <p class="mb-8 max-w-3xl indent-6 text-gray-700 [text-align:justify] dark:text-gray-300 text-pretty">{i18n.POSITIONING.INTRO}</p>
+      <Positioning i18n={i18n} />
+    </SectionContainer>
 
-      <!-- Projects Section -->
-      <SectionContainer id="proyectos" class="py-0 md:py-0 w-full md:max-w-none">
-        <TitleSection>
-          <CodeIcon class="size-7" />
-          {i18n.PROJECTS.TITLE}
-        </TitleSection>
-        <Projects projects={projects} i18n={i18n} />
-      </SectionContainer>
+    <SectionContainer wide={true} id="roadmap" class="mt-18 py-0 w-full">
+      <TitleSection>{i18n.JOURNEY.TITLE}</TitleSection>
+      <p class="mb-8 max-w-3xl indent-6 text-gray-700 [text-align:justify] dark:text-gray-300 text-pretty">{i18n.JOURNEY.INTRO}</p>
+      <Journey i18n={i18n} />
+    </SectionContainer>
 
-      <!-- About Me Section -->
-      <SectionContainer id="sobre-mi" class="py-0 md:py-0 w-full md:max-w-none">
-        <TitleSection>
-          <ProfileCheck class="size-8" />
-          {i18n.ABOUT.TITLE}
-        </TitleSection>
-        <AboutMe i18n={i18n} />
-      </SectionContainer>
+    <SectionContainer wide={true} id="proyectos" class="mt-18 py-0 w-full">
+      <TitleSection>
+        <CodeIcon class="size-7" />
+        {i18n.PROJECTS.TITLE}
+      </TitleSection>
+      <Projects projects={projects} i18n={i18n} />
+    </SectionContainer>
 
-    </div>
+    <SectionContainer wide={true} id="experiencia" class="mt-18 py-0 w-full">
+      <TitleSection>
+        <Briefcase class="size-8" />
+        {i18n.EXPERIENCE.TITLE}
+      </TitleSection>
+      <Experience experience={experience} i18n={i18n} />
+    </SectionContainer>
+
+    <SectionContainer wide={true} id="aprendizaje" class="mt-18 py-0 w-full">
+      <TitleSection>{i18n.LEARNING.TITLE}</TitleSection>
+      <p class="mb-8 max-w-3xl indent-6 text-gray-700 [text-align:justify] dark:text-gray-300 text-pretty">{i18n.LEARNING.INTRO}</p>
+      <LearningMap i18n={i18n} />
+    </SectionContainer>
+
+    <SectionContainer wide={true} id="sobre-mi" class="mt-18 py-0 w-full">
+      <TitleSection>
+        <ProfileCheck class="size-8" />
+        {i18n.ABOUT.TITLE}
+      </TitleSection>
+      <AboutMe i18n={i18n} />
+    </SectionContainer>
   </main>
 </Layout>

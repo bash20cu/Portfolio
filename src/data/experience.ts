@@ -1,5 +1,12 @@
 const EXPERIENCE_ES = [
   {
+    date: "11/2025 - Actualidad",
+    title: "Analista WFM | Datos y BI",
+    company: "Mouritech",
+    description:
+      "Diseñé modelos de priorización de KPIs en Power BI para enfocar métricas críticas y apoyar decisiones ejecutivas. Construí pipelines ETL con Python y técnicas de integración de datos para transformar información operativa cruda en reporting más confiable y accionable. También identifiqué riesgos operativos y propuse estrategias de mitigación con una mirada que conecta análisis, operación y continuidad del negocio.",
+  },
+  {
     date: "2022 - 8/2025",
     title: "Analista en Tiempo Real / RTA Developer",
     company: "Movate Inc.",
@@ -23,6 +30,13 @@ const EXPERIENCE_ES = [
 ];
 
 const EXPERIENCE_EN = [
+  {
+    date: "11/2025 - Present",
+    title: "WFM Analyst | Data & BI",
+    company: "Mouritech",
+    description:
+      "Designed KPI prioritization models in Power BI to focus attention on the metrics that matter most and support executive decision-making. Built ETL pipelines with Python and data integration techniques to turn raw operational inputs into more reliable, actionable reporting. I also identified operational risks and proposed mitigation strategies with a perspective that connects analysis, operations, and business continuity.",
+  },
   {
     date: "2022 - 8/2025",
     title: "Real Time Analyst / RTA Developer",

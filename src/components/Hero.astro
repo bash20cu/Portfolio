@@ -5,59 +5,159 @@ import LinkedInIcon from "../components/icons/LinkedIn.astro";
 import MailIcon from "../components/icons/Mail.astro";
 import SocialPill from "../components/SocialPill.astro";
 import ContactPopup from "./ContactPopup.astro";
+import LinkButton from "./LinkButton.astro";
 
-const { i18n } = Astro.props
+const { i18n, currentLocale = "es" } = Astro.props
+const projectsHref = currentLocale === "en" ? "/en/#proyectos" : "/#proyectos"
+const resumeHref = currentLocale === "en" ? "/files/cv_en_data_analist.pdf" : "/files/cv_es_data_analist.pdf"
 ---
 
-<div class="max-w-xl">
-  <div class="flex gap-4 mb-4">
-    <img
-      class="rounded-full shadow-lg size-16 object-cover"
-      src="https://avatars.githubusercontent.com/u/53372986?v=4"
-      alt={personalImageAlt}
-    />
-    <a
-      href="https://linkedin.com/in/miguel1990"
-      target="_blank"
-      rel="noopener"
-      class="flex items-center transition md:justify-center md:hover:scale-105">
-      <Badge>{i18n.HERO.AVAILABLE_WORK}</Badge>
-    </a>
+<div class="grid w-full gap-10 xl:h-full xl:grid-cols-[minmax(0,1.08fr)_minmax(22rem,0.92fr)] xl:items-stretch 2xl:grid-cols-[minmax(0,1.08fr)_minmax(26rem,0.92fr)]">
+  <div class="flex w-full max-w-4xl flex-col justify-center py-4 xl:py-10">
+    <div class="flex flex-wrap gap-4 mb-6 items-center">
+      <img
+        width="96"
+        height="96"
+        class="rounded-3xl shadow-lg size-20 object-cover ring-1 ring-black/10 dark:ring-white/10"
+        src="https://avatars.githubusercontent.com/u/53372986?v=4"
+        alt={personalImageAlt}
+      />
+      <a
+        href="https://linkedin.com/in/miguel1990"
+        target="_blank"
+        rel="noopener"
+        class="flex max-w-full items-center transition md:justify-center md:hover:scale-105">
+        <Badge>{i18n.HERO.AVAILABLE_WORK}</Badge>
+      </a>
+    </div>
+
+    <h1
+      class="max-w-[11ch] text-5xl font-bold tracking-tight text-gray-800 sm:text-6xl xl:text-7xl dark:text-white text-balance leading-none">
+      {i18n.HERO.GREETING} <span class="animate-wave inline-block origin-[70%_70%]">👋</span>
+    </h1>
+    
+    <h2 class="mt-4 max-w-2xl text-xl sm:text-2xl xl:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-amber-500 via-yellow-500 to-orange-500 dark:from-amber-200 dark:via-yellow-300 dark:to-orange-300 text-balance">
+      {i18n.HERO.ROLE}
+    </h2>
+
+    <p
+      class="mt-6 max-w-2xl indent-6 text-base text-gray-800 [text-align:justify] text-pretty dark:[&>strong]:text-yellow-200 dark:text-gray-300 [&>strong]:font-semibold [&>strong]:text-yellow-500 sm:text-lg xl:text-xl">
+      {i18n.HERO.DESCRIPTION_1} <strong
+        >{i18n.HERO.DESCRIPTION_STRONG}
+      </strong>{i18n.HERO.DESCRIPTION_2}
+    </p>
+
+    <ul class="mt-8 grid gap-3 sm:grid-cols-2 2xl:grid-cols-3">
+      {i18n.HERO.HIGHLIGHTS.map((item) => (
+        <li class="rounded-2xl border border-black/10 bg-white/60 px-4 py-3 text-sm text-gray-700 shadow-sm dark:border-white/10 dark:bg-white/5 dark:text-gray-300">
+          {item}
+        </li>
+      ))}
+    </ul>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <LinkButton href={projectsHref}>
+        {i18n.HERO.PRIMARY_CTA}
+      </LinkButton>
+      <LinkButton href={resumeHref}>
+        {i18n.HERO.SECONDARY_CTA}
+      </LinkButton>
+    </div>
+
+    <div class="mt-8">
+      <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">{i18n.HERO.CTA}</p>
+      <nav class="flex flex-wrap gap-4">
+        <ContactPopup i18n={i18n} />
+        <SocialPill href="mailto:migue900920@gmail.com">
+          <MailIcon class="size-4" />
+          {i18n.HERO.EMAIL_LABEL}
+        </SocialPill>
+        <SocialPill href="https://www.linkedin.com/in/miguel1990/">
+          <LinkedInIcon class="size-4" />
+          LinkedIn
+        </SocialPill>
+      </nav>
+    </div>
   </div>
 
-  <h1
-    class="text-4xl font-bold tracking-tight text-gray-800 sm:text-5xl dark:text-white">
-    {i18n.HERO.GREETING} <span class="animate-wave inline-block origin-[70%_70%]">👋</span>
-  </h1>
-  
-  <h2 class="mt-2 text-2xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-yellow-500 to-amber-500 dark:from-yellow-300 dark:to-yellow-500">
-    {i18n.HERO.ROLE}
-  </h2>
+  <aside class="relative hidden min-h-0 xl:flex xl:h-full xl:flex-col xl:justify-center">
+    <div class="relative flex h-[clamp(28rem,calc(100svh-8rem),40rem)] max-h-[calc(100svh-6rem)] min-h-[26rem] flex-col overflow-hidden rounded-[2.25rem] border border-white/10 bg-[radial-gradient(circle_at_top,rgba(250,204,21,0.15),transparent_28%),linear-gradient(180deg,rgba(15,23,42,0.72),rgba(15,23,42,0.28))] p-5 shadow-[0_40px_120px_-60px_rgba(15,23,42,0.9)] 2xl:h-[clamp(30rem,calc(100svh-8rem),44rem)]">
+      <div class="absolute inset-5 rounded-[1.8rem] border border-sky-400/15 bg-slate-950/40 backdrop-blur-md"></div>
+      <div class="relative flex items-center justify-between px-5 pt-5">
+        <span class="rounded-full border border-sky-400/30 bg-sky-500/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.22em] text-sky-300">
+        Architecture
+        </span>
+        <span class="text-[11px] font-medium uppercase tracking-[0.2em] text-slate-400">
+          product + ops + data
+        </span>
+      </div>
 
-  <p
-    class="mt-6 text-xl text-gray-800 dark:[&>strong]:text-yellow-200 [&>strong]:text-yellow-500 [&>strong]:font-semibold dark:text-gray-300 text-pretty">
-    {i18n.HERO.DESCRIPTION_1} <strong
-      >{i18n.HERO.DESCRIPTION_STRONG}
-    </strong>{i18n.HERO.DESCRIPTION_2}
-  </p>
+      <div class="relative z-10 flex min-h-0 flex-1 flex-col gap-4 px-5 pb-5 pt-7">
+        <div class="hero-node rounded-[1.4rem] border border-white/10 bg-slate-900/70 px-5 py-4">
+          <div class="flex items-center gap-3">
+            <span class="flex h-8 w-8 items-center justify-center rounded-full border border-sky-400/30 bg-sky-500/10 text-xs font-semibold text-sky-300">1</span>
+            <div>
+              <p class="text-sm font-semibold text-white">Input</p>
+              <p class="text-xs text-slate-400">Operations, files, incidents, business rules</p>
+            </div>
+          </div>
+        </div>
 
-  <div class="mt-8">
-    <p class="text-sm font-medium text-gray-600 dark:text-gray-400 mb-3">{i18n.HERO.CTA}</p>
-    <nav class="flex flex-wrap gap-4">
-      <ContactPopup />
-      <SocialPill href="mailto:migue900920@gmail.com">
-        <MailIcon class="size-4" />
-        Correo
-      </SocialPill>
-      <SocialPill href="https://www.linkedin.com/in/miguel1990/">
-        <LinkedInIcon class="size-4" />
-        LinkedIn
-      </SocialPill>
-    </nav>
-  </div>
+        <div class="flex flex-1 items-center justify-center">
+          <div class="hero-connector h-full max-h-16 w-px bg-gradient-to-b from-sky-400/60 to-transparent"></div>
+        </div>
+
+        <div class="grid gap-4 md:grid-cols-2">
+          <div class="hero-node rounded-[1.4rem] border border-white/10 bg-slate-900/70 px-5 py-4">
+            <div class="flex items-center gap-3">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full border border-sky-400/30 bg-sky-500/10 text-xs font-semibold text-sky-300">2</span>
+              <div>
+                <p class="text-sm font-semibold text-white">Automation</p>
+                <p class="text-xs text-slate-400">Python, Power Automate, ETL, validation</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-node rounded-[1.4rem] border border-white/10 bg-slate-900/70 px-5 py-4">
+            <div class="flex items-center gap-3">
+              <span class="flex h-8 w-8 items-center justify-center rounded-full border border-amber-300/30 bg-amber-400/10 text-xs font-semibold text-amber-200">3</span>
+              <div>
+                <p class="text-sm font-semibold text-white">Product</p>
+                <p class="text-xs text-slate-400">Frontend, backend, internal tools, UX</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="flex flex-1 items-center justify-center">
+          <div class="hero-connector h-full max-h-16 w-px bg-gradient-to-b from-sky-400/60 to-transparent"></div>
+        </div>
+
+        <div class="hero-node rounded-[1.6rem] border border-sky-400/20 bg-slate-900/80 px-6 py-5 shadow-[0_0_0_1px_rgba(56,189,248,0.06),0_24px_80px_-48px_rgba(56,189,248,0.4)]">
+          <div class="flex items-center gap-3">
+            <span class="flex h-10 w-10 items-center justify-center rounded-full border border-sky-400/30 bg-sky-500/10 text-sm font-semibold text-sky-300">4</span>
+            <div>
+              <p class="text-base font-semibold text-white">Decision layer</p>
+              <p class="text-sm text-slate-300">Dashboards, BI, architecture thinking, measurable impact</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </aside>
 </div>
 
 <style>
+  div :global(a[href^="https://linkedin"]) {
+    max-width: 100%;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .animate-wave {
+      animation: none;
+    }
+  }
+
   @keyframes wave {
     0% { transform: rotate(0.0deg) }
     10% { transform: rotate(14.0deg) }  
@@ -70,5 +170,36 @@ const { i18n } = Astro.props
   }
   .animate-wave {
     animation: wave 2s infinite;
+  }
+
+  .hero-node {
+    animation: hero-pulse 8s ease-in-out infinite;
+  }
+
+  .hero-connector {
+    min-height: 1.5rem;
+  }
+
+  .hero-node:nth-of-type(2) {
+    animation-delay: 1.2s;
+  }
+
+  .hero-node:nth-of-type(3) {
+    animation-delay: 2.4s;
+  }
+
+  .hero-node:nth-of-type(4) {
+    animation-delay: 3.6s;
+  }
+
+  @keyframes hero-pulse {
+    0%, 100% {
+      transform: translateY(0);
+      box-shadow: 0 0 0 rgba(56, 189, 248, 0);
+    }
+    50% {
+      transform: translateY(-2px);
+      box-shadow: 0 16px 40px -28px rgba(56, 189, 248, 0.35);
+    }
   }
 </style>

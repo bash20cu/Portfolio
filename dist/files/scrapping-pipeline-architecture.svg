@@ -1,0 +1,53 @@
+<svg width="1200" height="760" viewBox="0 0 1200 760" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg2" x1="140" y1="80" x2="1080" y2="700" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#0F172A"/>
+    </linearGradient>
+    <linearGradient id="box2" x1="200" y1="180" x2="980" y2="620" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#1E293B"/>
+      <stop offset="1" stop-color="#172554"/>
+    </linearGradient>
+    <linearGradient id="line2" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#22C55E"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="760" rx="36" fill="url(#bg2)"/>
+  <circle cx="1030" cy="620" r="170" fill="#F59E0B" fill-opacity="0.06"/>
+  <circle cx="150" cy="120" r="140" fill="#22C55E" fill-opacity="0.06"/>
+  <text x="84" y="104" fill="#E5EEF8" font-family="Segoe UI, Arial, sans-serif" font-size="28" font-weight="700">Scrapping pipelines</text>
+  <text x="84" y="144" fill="#FCD34D" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="600">Private WFM ingestion and normalization workflows</text>
+  <text x="84" y="196" fill="#D1D5DB" font-family="Segoe UI, Arial, sans-serif" font-size="20">A focused set of ingestion pipelines for forecast, interval, staffing, hourly digest, and weekly summary reporting.</text>
+
+  <rect x="84" y="252" width="174" height="160" rx="26" fill="url(#box2)" stroke="#374151"/>
+  <text x="112" y="302" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Forecast</text>
+  <text x="112" y="340" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">Daily and</text>
+  <text x="112" y="368" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">reforecast flows</text>
+
+  <rect x="282" y="252" width="174" height="160" rx="26" fill="url(#box2)" stroke="#374151"/>
+  <text x="310" y="302" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Interval</text>
+  <text x="310" y="340" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">Parser and</text>
+  <text x="310" y="368" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">time grain cleanup</text>
+
+  <rect x="480" y="252" width="174" height="160" rx="26" fill="url(#box2)" stroke="#374151"/>
+  <text x="508" y="302" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Hourly</text>
+  <text x="508" y="340" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">Header scan</text>
+  <text x="508" y="368" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">and KPI extract</text>
+
+  <rect x="678" y="252" width="174" height="160" rx="26" fill="url(#box2)" stroke="#374151"/>
+  <text x="706" y="302" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Staffing</text>
+  <text x="706" y="340" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">Targeted parsing</text>
+  <text x="706" y="368" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">and rollups</text>
+
+  <rect x="876" y="252" width="240" height="160" rx="26" fill="url(#box2)" stroke="#374151"/>
+  <text x="906" y="302" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Weekly summary</text>
+  <text x="906" y="340" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">Aggregation, charts,</text>
+  <text x="906" y="368" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="17">and export for BI</text>
+
+  <path d="M171 444C171 486 214 514 284 530C391 554 544 562 648 562C768 562 892 551 1000 530" stroke="url(#line2)" stroke-width="8" stroke-linecap="round"/>
+  <rect x="322" y="462" width="564" height="170" rx="30" fill="#0B1220" stroke="#374151"/>
+  <text x="354" y="516" fill="#F8FAFC" font-family="Segoe UI, Arial, sans-serif" font-size="22" font-weight="700">Shared outcome</text>
+  <text x="354" y="558" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Standardized datasets for dashboards, audits, forecasting checks, and leadership reviews</text>
+  <text x="354" y="592" fill="#CBD5E1" font-family="Segoe UI, Arial, sans-serif" font-size="18">Less workbook-by-workbook work, more repeatable reporting logic</text>
+</svg>

@@ -4,64 +4,20 @@ import ExperienceItem from "./ExperienceItem.astro";
 const { experience } = Astro.props
 ---
 
-<div class="embla relative" id="experience-carousel">
-  <div class="embla__container py-4">
-    {
-      experience.map((experience) => (
-        <div class="embla__slide pl-4">
-          <ExperienceItem {...experience} />
+<div class="relative space-y-5 pl-4 sm:pl-6">
+  <div class="pointer-events-none absolute bottom-0 left-[0.7rem] top-2 w-px bg-gradient-to-b from-sky-400/60 via-sky-500/30 to-transparent sm:left-[1rem]"></div>
+
+  {
+    experience.map((item, index) => (
+      <div class="relative">
+        <div class="absolute left-0 top-8 flex h-6 w-6 items-center justify-center rounded-full border border-sky-400/40 bg-slate-950 text-[10px] font-semibold text-sky-300 shadow-[0_0_0_6px_rgba(15,23,42,0.9)] sm:left-[0.125rem]">
+          {index + 1}
         </div>
-      ))
-    }
-  </div>
 
-  {/* Navigation Buttons for Experience (Moved below) */}
-  <div class="flex justify-end gap-2 mt-4 px-4">
-    <button class="embla__prev bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Anterior experiencia">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M15 6l-6 6l6 6" /></svg>
-    </button>
-    <button class="embla__next bg-gray-100 dark:bg-gray-800 hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-200 p-2 rounded-full transition-colors border border-gray-200 dark:border-gray-700 shadow-sm" aria-label="Siguiente experiencia">
-      <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-right" width="20" height="20" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6l-6 6" /></svg>
-    </button>
-  </div>
+        <div class="pl-8 sm:pl-12">
+          <ExperienceItem {...item} index={index + 1} />
+        </div>
+      </div>
+    ))
+  }
 </div>
-
-<style>
-  .embla {
-    overflow: hidden;
-  }
-  .embla__container {
-    display: flex;
-    /* gap managed by padding on slide for better alignment */
-  }
-   .embla__slide {
-    flex: 0 0 100%; /* All sizes: 1 card wide (container width controls visual size) */
-    min-width: 0;
-  }
-</style>
-
-<script>
-  import EmblaCarousel from 'embla-carousel'
-  import Autoplay from 'embla-carousel-autoplay'
-
-  const initCarousel = () => {
-    const emblaNode = document.querySelector('#experience-carousel') as HTMLElement
-    const prevBtn = emblaNode?.querySelector('.embla__prev') as HTMLButtonElement
-    const nextBtn = emblaNode?.querySelector('.embla__next') as HTMLButtonElement
-
-    if (emblaNode) {
-      const emblaApi = EmblaCarousel(emblaNode, { 
-        loop: false, 
-        align: 'start',
-        containScroll: 'trimSnaps'
-      }, [
-        Autoplay({ delay: 8000, stopOnInteraction: true })
-      ])
-
-      if (prevBtn) prevBtn.onclick = () => emblaApi.scrollPrev()
-      if (nextBtn) nextBtn.onclick = () => emblaApi.scrollNext()
-    }
-  }
-
-  document.addEventListener('astro:page-load', initCarousel)
-</script>
